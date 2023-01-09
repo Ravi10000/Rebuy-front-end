@@ -1,0 +1,13 @@
+header{
+    position: sticky;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    background-color: var(--background-clr-v2);
+    .logo-container{
+        font-size: .75rem;
+    }
+}

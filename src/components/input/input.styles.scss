@@ -1,0 +1,41 @@
+.input-container{
+    position: relative;
+    margin-top: 35px;
+    .input{
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1.5rem;
+        background-color: #EDE1EF;
+        border: none;
+        border-radius: 10px;
+        color: var(--text-clr);
+        &:focus{
+            // outline: 2px solid #e7b9f0;
+            outline: 2px solid var(--primary-clr);
+        }
+        &:focus, &:valid{
+            &+label{
+                font-weight: 600;
+                transform: translate(-15px, -45px);
+                color: var(--primary-clr);
+            }
+        }
+    }
+    label{
+        pointer-events: none;
+        position: absolute;
+        left: 20px;
+        top: 17.5px;
+        text-transform: capitalize;
+        font-weight: 500;
+        transition: all .2s ease-out;
+    }
+    .error{
+        text-transform: lowercase;
+        margin-left: 10px;
+        color: rgba(161, 43, 108, 0.664);   
+        &::first-letter{
+            text-transform: uppercase;
+        }
+       }
+}

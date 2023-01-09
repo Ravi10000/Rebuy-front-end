@@ -1,0 +1,45 @@
+:root {
+  --primary-clr: #414395;
+  --secondary-clr: #b0b1df;
+  --text-clr: #3f3d52;
+  --btn-text-clr: #d6d6ee;
+  --fade-text-clr: #3f3d52ee;
+  --background-clr-v1: #ede1ef;
+  --background-clr-v2: #f6f1f8;
+  --red: #d33747;
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  /* background: rgba(128, 128, 128, 0.22); */
+  background-color: var(--secondary-clr);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-clr);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  width: 10px;
+  background: linear-gradient(180deg, royalblue 0%, var(--primary-clr) 100%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+a{
+  color: var(--primary-clr);
+  text-decoration: none;
+  font-weight: 500;
+}

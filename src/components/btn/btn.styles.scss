@@ -1,0 +1,28 @@
+button.btn{
+    font-size: 1.3rem;
+    padding: 12px 30px;
+    border-radius: 15px;
+    border: none;
+    background: var(--primary-clr);
+    color: var(--btn-text-clr);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    border: 2px solid var(--primary-clr);
+    &.btn-secondary {
+        background-color: white;
+        color: var(--primary-clr);
+        border: 2px solid #B0B1DF;
+    }
+    
+}
+
+@media (hover: hover) {
+    button.btn{
+        &:hover{
+            // background-color: var(--btn-text-clr);
+            // color: var(--primary-clr);
+            // border: 2px solid var(--primary-clr);
+            cursor: pointer;
+        }
+    }
+}

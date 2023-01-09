@@ -1,0 +1,48 @@
+.signin-page {
+    background-color: var(--background-clr-v2);
+    height: 100vh;
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .signin-title {
+            color: var(--red);
+            margin: 40% 0 30px 5%;
+            align-self: flex-start;
+            font-size: 3rem;
+        }
+
+        .forgot-password-text {
+            color: var(--primary-clr);
+            align-self: flex-start;
+            margin: 10px 0 25px 5%;
+        }
+
+        #sign-in-form {
+            width: 90%;
+        }
+
+        .create-new-account-text {
+            margin-top: 25px;
+
+            span {
+                font-weight: 500;
+                color: var(--primary-clr);
+            }
+        }
+    }
+}
+
+@media (min-width: 800px) {
+    .signin-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height:100vh;
+        .container{
+            width: 50%;
+            max-width: 500px;
+        }
+    }
+}
