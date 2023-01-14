@@ -10,8 +10,8 @@
         border-top-color: var(--secondary-clr);
         border-left-color: var(--secondary-clr);
         border-radius: 100%;
+        animation: spin .5s linear infinite;
     }
-    animation: spin .5s linear infinite;
 }
 
 @keyframes spin {

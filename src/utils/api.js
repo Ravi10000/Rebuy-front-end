@@ -1,19 +1,27 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:5000/api";
+axios.defaults.baseURL = `http://localhost:5000`
+// const BASE_URL = "http://localhost:5000/api/";
+const BASE_URL = "/api/";
 
 export async function fetchAllProducts() {
-  const { data } = await axios.get(`${baseUrl}/products`);
+  const { data } = await axios.get(`${BASE_URL}products`);
   console.log({ data });
   return data;
 }
 
 export async function signUpUser(user) {
-  const { data } = await axios.post(`${baseUrl}/user/signup`, user);
-  return data;
+  console.log(user);
+  const response = await axios.post(`${BASE_URL}user/signup`, user);
+  return response;
 }
 
+export async function signInUser(user) {
+  const response = await axios.post(`${BASE_URL}user/signin`, user);
+  return response;
+}
 
-export async function signInUser(user){
-  const {data} = await axios.post(`${baseUrl}/user/signin`, user)
+export async function fetchUserFromServer() {
+  const response = await axios.get(`${BASE_URL}user`);
+  return response;
 }

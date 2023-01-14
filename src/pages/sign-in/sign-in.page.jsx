@@ -1,49 +1,41 @@
 import "./sign-in.styles.scss";
 
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../components/input/input.component";
 import Btn from "../../components/btn/btn.component";
 import { Link, withRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { signIn } from "../../redux/user/user.actions";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { signInUser } from "../../utils/api";
 
-function SignInPage({ history }) {
-  const dispatch = useDispatch();
+function SignInPage({ history, signIn, flash }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitForm = async (data) => {
     try {
       setIsLoading(true);
       const { email: username, password } = data;
-      const res = await axios.post(
-        "https://mrphonex-api.onrender.com/api/user/signin",
-        { username, password }
-      );
-
-      dispatch(signIn(res.data.user));
-      dispatch(
-        setFlash({
-          type: "success",
-          message: "You are signed in successfully",
-        })
-      );
+      const res = await signInUser({ username, password });
+      signIn(res.data.user);
+      flash({
+        type: "success",
+        message: "You are signed in successfully",
+      });
       history.goBack();
     } catch (err) {
       console.log(err.message);
       setIsLoading(false);
-      dispatch(
-        setFlash({
-          type: "error",
-          message: "Invalid username or password",
-        })
-      );
+      flash({
+        type: "error",
+        message: "Invalid username or password",
+      });
     }
   };
   return (
@@ -58,7 +50,8 @@ function SignInPage({ history }) {
         >
           <Input
             label="email"
-            type="email"
+            // type="email"
+            // don't validate for email
             error={errors?.email?.message}
             register={{
               ...register("email", {
@@ -91,7 +84,9 @@ function SignInPage({ history }) {
           />
         </form>
         <p className="forgot-password-text">forgot password?</p>
-        <Btn form="sign-in-form">Log in</Btn>
+        <Btn form="sign-in-form" __isLoading={isLoading}>
+          Log in
+        </Btn>
         <p className="create-new-account-text">
           New Here?{" "}
           <span>
@@ -102,5 +97,11 @@ function SignInPage({ history }) {
     </div>
   );
 }
+function mapDispatchToProps(dispatch) {
+  return {
+    signIn: (user) => dispatch(signIn(user)),
+    flash: (flash) => dispatch(setFlash(flash)),
+  };
+}
 
-export default withRouter(SignInPage);
+export default connect(null, mapDispatchToProps)(withRouter(SignInPage));

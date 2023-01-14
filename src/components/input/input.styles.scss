@@ -31,9 +31,12 @@
         transition: all .2s ease-out;
     }
     .error{
+        margin-top: 5px;
         text-transform: lowercase;
         margin-left: 10px;
-        color: rgba(161, 43, 108, 0.664);   
+        // color: rgba(161, 43, 108, 0.664);   
+        color: rgb(129, 126, 126);
+        font-weight: 500;
         &::first-letter{
             text-transform: uppercase;
         }

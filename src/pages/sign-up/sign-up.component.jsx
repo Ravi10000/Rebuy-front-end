@@ -5,8 +5,13 @@ import Input from "../../components/input/input.component";
 import Btn from "../../components/btn/btn.component";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { signUpUser } from "../../utils/api";
+import { setFlash } from "../../redux/flash/flash.actions";
+import { connect } from "react-redux";
+import {signIn} from '../../redux/user/user.actions'
+// import {createSt}
 
-export default function SignUpPage() {
+function SignUpPage({flash, signIn}) {
   const {
     register,
     handleSubmit,
@@ -15,32 +20,38 @@ export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function submitForm(data) {
+    console.log(data);
     try {
       setIsLoading(true);
       const { email: username, password } = data;
       console.log(data);
-      const res = await axios.post(
-        "https://mrphonex-api.onrender.com/api/user/signup",
-        {
-          user: {
-            username,
-            password,
-            "phone number": data["phone number"],
-          },
-        }
-      );
+      const res = await signUpUser({
+        username,
+        password,
+        "phone number": data["phone number"],
+      });
+      // const res = await axios.post(
+      //   "https://mrphonex-api.onrender.com/api/user/signup",
+      //   {
+      //     user: {
+      //       username,
+      //       password,
+      //       "phone number": data["phone number"],
+      //     },
+      //   }
+      // );
       if (res.data.error) {
         console.error(res.data.error.message);
         flash({
           type: "error",
           message: res.data.error.message,
         });
-        history.push("/signup");
+        // history.push("/signup");
         setIsLoading(false);
         return;
       }
       signIn(res.data.user);
-      history.push("/profile");
+      // history.push("/profile");
     } catch (err) {
       console.log(err.message);
     }
@@ -68,7 +79,7 @@ export default function SignUpPage() {
           />
           <Input
             label="email"
-            type="email"
+            // type="email"
             error={errors?.email?.message}
             register={{
               ...register("email", {
@@ -84,9 +95,9 @@ export default function SignUpPage() {
           <Input
             label="phone"
             type="number"
-            error={errors?.phone?.message}
+            error={errors?.["phone number"]?.message}
             register={{
-              ...register("phone", {
+              ...register("phone number", {
                 required: "phone number required",
                 pattern: {
                   value: /^[0-9]{10}$/,
@@ -132,7 +143,7 @@ export default function SignUpPage() {
             }}
           />
         </form>
-        <Btn form="sign-up-form">Sign up</Btn>
+        <Btn form="sign-up-form" __isLoading={isLoading}>Sign up</Btn>
         <p className="create-new-account-text">
           Already Have An Account?{" "}
           <span>
@@ -143,3 +154,12 @@ export default function SignUpPage() {
     </div>
   );
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    signIn: (user) => dispatch(signIn(user)),
+    flash: (flash) => dispatch(setFlash(flash)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignUpPage);

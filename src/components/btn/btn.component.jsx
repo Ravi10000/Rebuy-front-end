@@ -18,14 +18,14 @@ export default function Btn({
   return (
     <button
       className={`btn ${__btn_secondary && "btn-secondary"}`}
-      style={custom_styles}
+      style={{...custom_styles, display: __isLoading ? 'flex' : 'inline-block'}}
       onClick={() => {
         __handleClick && __handleClick();
       }}
       {...__otherProps}
     >
       {children}
-      <div className="button-loader"></div>
+      {__isLoading && <div className="button-spinner"></div>}
     </button>
   );
 }

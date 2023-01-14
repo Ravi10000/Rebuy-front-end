@@ -8,10 +8,21 @@ button.btn{
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     border: 2px solid var(--primary-clr);
+    display: flex;
     &.btn-secondary {
         background-color: white;
         color: var(--primary-clr);
         border: 2px solid #B0B1DF;
+    }
+    .button-spinner{
+        margin-left: 5px;
+        height: 25px;
+        width: 25px;
+        border: 2px solid var(--primary-clr);
+        border-top-color: var(--secondary-clr);
+        border-left-color: var(--secondary-clr);
+        border-radius: 100%;
+        animation: spin .5s linear infinite;
     }
     
 }

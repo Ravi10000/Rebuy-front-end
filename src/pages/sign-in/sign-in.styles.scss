@@ -1,6 +1,7 @@
 .signin-page {
     background-color: var(--background-clr-v2);
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 100px;
     .container {
         display: flex;
         flex-direction: column;
