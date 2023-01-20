@@ -1,0 +1,15 @@
+export const keys = [
+  "Brand",
+  "Model",
+  "Color",
+  "RAM",
+  "Storage",
+  "Price",
+  "Operating System",
+  "Battery Capacity",
+  "Front Camera",
+  "Rear Camera",
+  "Chipset",
+  "CPU Info",
+  "GPU Info",
+];

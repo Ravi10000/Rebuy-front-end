@@ -38,8 +38,39 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
-a{
+a {
   color: var(--primary-clr);
   text-decoration: none;
   font-weight: 500;
+}
+
+.__heading {
+  color: var(--text-clr);
+  font-weight: 600;
+  margin-left: 10%;
+}
+
+.__link {
+  color: var(--primary-clr);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+.__link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--primary-clr);
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .__link:hover::after {
+    transform: scaleX(1);
+  }
 }

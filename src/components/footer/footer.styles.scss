@@ -1,13 +1,13 @@
 footer {
+  // position: fixed;
+  // bottom: 0;
   width: 100%;
-  margin-top: auto;
   background-color: var(--primary-clr);
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  justify-self: flex-end;
   padding: 20px;
 
   .info {

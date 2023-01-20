@@ -147,7 +147,7 @@ function SignUpPage({flash, signIn}) {
         <p className="create-new-account-text">
           Already Have An Account?{" "}
           <span>
-            <Link to="/signin">Log in</Link>
+            <Link to="/signin" className="__link">Log in</Link>
           </span>
         </p>
       </div>

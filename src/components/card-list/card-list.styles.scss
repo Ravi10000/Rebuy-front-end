@@ -1,19 +1,27 @@
-.card-list{
-    margin: 10%;
+.card-list {
     display: grid;
-    grid-template-columns: 1fr; 
-    column-gap: 2.5%;
-    row-gap: 2.5%;
-
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    // margin: 0 50px 50px 50px;
+    column-gap: 50px;
+    // outline: 2px solid orangered;
+    +p{
+        margin-top: 35px;
+        font-weight: 500;
+    }
 }
 
+
 @media (min-width: 600px) {
-    .card-list{
+    .card-list {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 @media (min-width: 800px) {
-    .card-list{
+    .card-list {
+        // outline: 2px solid red;
+        // place-items: center;
         grid-template-columns: repeat(3, 1fr);
     }
 }

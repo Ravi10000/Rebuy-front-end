@@ -5,7 +5,7 @@ export default function Btn({
   __styles,
   __btn_secondary,
   __isLoading,
-  __handleClick,
+  // __handleClick,
   children,
   ...__otherProps
 }) {
@@ -19,9 +19,9 @@ export default function Btn({
     <button
       className={`btn ${__btn_secondary && "btn-secondary"}`}
       style={{...custom_styles, display: __isLoading ? 'flex' : 'inline-block'}}
-      onClick={() => {
-        __handleClick && __handleClick();
-      }}
+      // onClick={() => {
+      //   __handleClick && __handleClick();
+      // }}
       {...__otherProps}
     >
       {children}

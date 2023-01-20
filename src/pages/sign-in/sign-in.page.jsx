@@ -90,7 +90,7 @@ function SignInPage({ history, signIn, flash }) {
         <p className="create-new-account-text">
           New Here?{" "}
           <span>
-            <Link to="/signup">Create New Account</Link>
+            <Link to="/signup" className="__link">Create New Account</Link>
           </span>
         </p>
       </div>

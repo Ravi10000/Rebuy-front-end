@@ -1,4 +1,5 @@
 .home-page {
+    margin-bottom: 400px;
     .banner {
         .title-container {
             .title {
@@ -59,32 +60,50 @@
     }
 
     .all-devices-container {
-        // margin-top: 50px;
+        // outline: 2px solid sandybrown;
+        margin: 50px 0;
+        display: grid;
+        place-items: center;
 
         .for-sale-title {
-            margin-left: 25px;
-
-            h2 {
-                color: var(--text-clr);
-                font-weight: 600;
-            }
-
+            place-self: flex-start;
+            margin-bottom: 35px;
+            // outline: 2px solid gold;
             p {
-                font-weight: 300;
+                font-weight: 400;
                 font-size: 1.5rem;
                 color: var(--primary-clr);
             }
         }
     }
+
+    .shop-by-brand {
+        .brands-container {
+            margin-top: 25px;
+            display: grid;
+            place-items: center;
+
+            img {
+                width: 150px;
+            }
+        }
+    }
 }
 
-@media (min-width: 300px) {
+@media (min-width: 500px) {
     .home-page {
         .banner {
             .title-container {
                 .title {
                     font-size: 3rem;
                 }
+            }
+        }
+
+        .shop-by-brand {
+            .brands-container {
+                grid-template-columns: repeat(3, 1fr);
+
             }
         }
     }
@@ -176,9 +195,16 @@
 
         }
 
-        .all-devices-container {
-            .for-sale-title {
-                margin: 10%;
+        // .all-devices-container {
+        //     .for-sale-title {
+        //         // margin: 10%;
+        //     }
+        // }
+
+        .shop-by-brand {
+            .brands-container {
+                grid-template-columns: repeat(4, 1fr);
+
             }
         }
     }

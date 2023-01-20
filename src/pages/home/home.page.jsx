@@ -37,11 +37,20 @@ export default function HomePage() {
         </div>
       </div>
       <div className="all-devices-container">
-        <div className="for-sale-title">
+        <div className="for-sale-title __heading">
           <h2>For Sale</h2>
           <p>Top Refurbished Smartphones </p>
         </div>
         <CardList />
+      </div>
+      <div className="shop-by-brand">
+        <h2 className="__heading">Shop By Brand</h2>
+        <div className="brands-container">
+          <img src="/apple.png" alt="" />
+          <img src="/vivo.png" alt="" />
+          <img src="mi.png" alt="" />
+          <img src="oneplus.png" alt="" />
+        </div>
       </div>
     </div>
   );
