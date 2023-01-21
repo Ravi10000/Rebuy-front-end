@@ -1,6 +1,4 @@
 .home-page {
-    margin-bottom: 400px;
-
     .banner {
         .title-container {
             .title {
@@ -12,6 +10,7 @@
                 font-size: 2rem;
 
                 .subtitle {
+                    // width: 100vw;
                     z-index: 1000;
                     color: #535166;
                     font-size: 2rem;
@@ -48,8 +47,8 @@
             padding: 10% 15% 25% 15%;
             height: 100vh;
             height: calc(var(--vh, 1vh) * 100);
-            background: linear-gradient(90deg, #fff 0%, #b0b1dfa2 100%);
-
+            // background: linear-gradient(90deg, #fff 0%, #b0b1dfa2 100%);
+            background-color: var(--background-clr-v2);
             display: grid;
             place-content: center;
 
@@ -62,9 +61,10 @@
 
     .all-devices-container {
         // outline: 2px solid sandybrown;
-        margin: 50px 0;
+        padding: 50px 0 50px;
         display: grid;
         place-items: center;
+        border-bottom: 2px solid var(--secondary-clr);
 
         .for-sale-title {
             place-self: flex-start;
@@ -79,26 +79,9 @@
         }
     }
 
-    .shop-by-brand {
-        margin-bottom: 50px;
-
-        .brands-container {
-            margin-top: 25px;
-            display: grid;
-            place-items: center;
-            grid-template-columns: repeat(2, 1fr);
-            row-gap: 15px;
-
-            img {
-                transition: all .2s ease-in-out;
-                border: 1px solid rgba(128, 128, 128, 0.281);
-                width: 150px;
-                border-radius: 10px;
-            }
-        }
-    }
-
     .shop-by-price {
+        margin: 50px 0;
+
         .container {
             margin-top: 25px;
             display: grid;
@@ -117,11 +100,12 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                text-align: center;
 
                 p {
                     font-size: 1.2rem;
                     font-weight: 600;
-                    color: var(--text-clr);
+                    color: var(--primary-clr);
                     padding-bottom: 10px;
                 }
 
@@ -134,19 +118,51 @@
             // display: grid;
         }
     }
+
+    .shop-by-brand {
+        margin-bottom: 50px;
+
+        .brands-container {
+            margin-top: 25px;
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 15px;
+
+            img {
+                transition: all .2s ease-in-out;
+                border: 1px solid #80808048;
+                width: 150px;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .shop-by-year {
+        margin-bottom: 50px;
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+            row-gap: 10px;
+            margin: 25px 0 50px;
+            div {
+                color: var(--primary-clr);
+                transition: all .2s ease-in-out;
+                padding: 20px 50px;
+                border: 1px solid #80808048;
+                border-radius: 10px;
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
+    }
+
 }
 
 @media (hover: hover) {
     .home-page {
-        .shop-by-brand {
-            .brands-container {
-                img:hover {
-                    box-shadow: 2px 2px 20px var(--secondary-clr);
-                    transform: scale(1.05);
-                }
-            }
-        }
-
         .shop-by-price {
             .container {
                 div:hover {
@@ -159,6 +175,25 @@
                 }
             }
         }
+
+        .shop-by-brand {
+            .brands-container {
+                img:hover {
+                    box-shadow: 2px 2px 20px var(--secondary-clr);
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .shop-by-year {
+            .container {
+                div:hover {
+                    box-shadow: 2px 2px 20px var(--secondary-clr);
+                    transform: scale(1.05);
+                }
+            }
+        }
+
+
     }
 }
 
@@ -173,6 +208,12 @@
             }
         }
 
+        .shop-by-price {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+        }
         .shop-by-brand {
 
             // outline: 2px solid red;
@@ -185,7 +226,7 @@
             }
         }
 
-        .shop-by-price {
+        .shop-by-year {
             .container {
                 grid-template-columns: repeat(3, 1fr);
 
@@ -286,6 +327,13 @@
         //     }
         // }
 
+        .shop-by-price {
+            .container {
+                margin: 25px 10% 0 10%;
+                grid-template-columns: repeat(5, 1fr);
+
+            }
+        }
         .shop-by-brand {
             .brands-container {
                 // img{
@@ -297,7 +345,7 @@
             }
         }
 
-        .shop-by-price {
+        .shop-by-year {
             .container {
                 margin: 25px 10% 0 10%;
                 grid-template-columns: repeat(5, 1fr);

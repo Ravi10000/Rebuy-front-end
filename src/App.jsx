@@ -11,6 +11,7 @@ import ProductPage from "./pages/product/Product.page";
 import PopUp from "./components/popup/popup.component";
 
 // components
+import ScrollToTop from "./components/scroll-to-top/scroll-to-top.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
 import { selectFlash } from "./redux/flash/flash.selectors";
@@ -21,7 +22,10 @@ import ProfilePage from "./pages/profile/profile.page";
 import { fetchUserFromServer } from "./utils/api";
 import { signIn } from "./redux/user/user.actions";
 import { setFlash } from "./redux/flash/flash.actions";
-function App({ currentUser, flash, signIn }) {
+import { fetchAllProducts } from "./utils/api";
+import { initializeProducts } from "./redux/shop/shop.actions";
+
+function App({ currentUser, flash, signIn, initializeProducts }) {
   const [isFetchingUser, setFetchingUser] = useState(true);
 
   useEffect(() => {
@@ -51,6 +55,17 @@ function App({ currentUser, flash, signIn }) {
       }
     })();
   }, [signIn, setFlash]);
+
+  useEffect(() => {
+    (async function () {
+      const { data } = await fetchAllProducts();
+      initializeProducts(data);
+      // const currentProductsCount = data?.products?.length;
+      // console.log(currentProductsCount);
+      // setSkip(currentProductsCount || 0);
+    })();
+  }, []);
+
   return (
     <div className="app">
       {flash && <PopUp type={flash.type} message={flash.message} />}
@@ -75,7 +90,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   signIn: (user) => dispatch(signIn(user)),
-  flash: flash => dispatch(setFlash(flash))
+  flash: (flash) => dispatch(setFlash(flash)),
+  initializeProducts: (productsInfo) =>
+    dispatch(initializeProducts(productsInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

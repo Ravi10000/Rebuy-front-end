@@ -8,10 +8,10 @@ import { useForm } from "react-hook-form";
 import { signUpUser } from "../../utils/api";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
-import {signIn} from '../../redux/user/user.actions'
-// import {createSt}
+import { signIn } from "../../redux/user/user.actions";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 
-function SignUpPage({flash, signIn}) {
+function SignUpPage({ flash, signIn }) {
   const {
     register,
     handleSubmit,
@@ -59,6 +59,8 @@ function SignUpPage({flash, signIn}) {
 
   return (
     <div className="signup-page">
+      <ScrollToTop />
+
       <div className="container">
         <h1 className="signup-title">Sign up</h1>
         <form
@@ -143,11 +145,15 @@ function SignUpPage({flash, signIn}) {
             }}
           />
         </form>
-        <Btn form="sign-up-form" __isLoading={isLoading}>Sign up</Btn>
+        <Btn form="sign-up-form" __isLoading={isLoading}>
+          Sign up
+        </Btn>
         <p className="create-new-account-text">
           Already Have An Account?{" "}
           <span>
-            <Link to="/signin" className="__link">Log in</Link>
+            <Link to="/signin" className="__link">
+              Log in
+            </Link>
           </span>
         </p>
       </div>

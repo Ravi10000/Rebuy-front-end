@@ -6,6 +6,7 @@ import { fetchProductById } from "../../utils/api";
 import Spinner from "../../components/spinner/spinner.component";
 import ImagesCarousel from "../../components/images-carousel/images-carousel.component";
 import { keys } from "../../utils/product-info";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 
 function ProductPage({ match, history }) {
   const [product, setProduct] = useState(null);
@@ -31,13 +32,13 @@ function ProductPage({ match, history }) {
       else console.log(response.error);
     })();
   }, []);
-  console.log(product?.brand);
   return (
-    <>
+    <div className="product-page">
+      <ScrollToTop />
       {!product ? (
         <Spinner />
       ) : (
-        <div className="product-page">
+        <>
           <div className="product-info-container">
             <div className="img-container">
               {product?.images?.length > 1 ? (
@@ -75,19 +76,21 @@ function ProductPage({ match, history }) {
           <div className="description-container">
             <h2>Descriptions</h2>
             <table className="description">
-              {keys.map((key, index) => {
-                return (
-                  <tr>
-                    <th>{key}</th>
-                    <td>{values[index]}</td>
-                  </tr>
-                );
-              })}
+              <tbody>
+                {keys.map((key, index) => {
+                  return (
+                    <tr key={key}>
+                      <th>{key}</th>
+                      <td>{values[index]}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 

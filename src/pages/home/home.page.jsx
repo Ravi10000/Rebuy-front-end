@@ -3,17 +3,18 @@ import "./home.styles.scss";
 import Logo from "../../components/logo/logo.component";
 import Btn from "../../components/btn/btn.component";
 import CardList from "../../components/card-list/card-list.component";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 import { brands } from "../../utils/brands";
 // import { Typewriter } from 'react-simple-typewriter'
 import { Link } from "react-router-dom";
 export default function HomePage() {
   return (
     <div className="home-page">
+      <ScrollToTop />
       <div className="banner">
         <div className="title-container">
           <div className="title">
             <Logo />
-            {/* <p className="subtitle">Your Dream Flagship Smartphones <br/> At The Best Prices</p> */}
             <p className="subtitle">
               Refurbished Smartphones <br />
               <span>Best Prices</span>
@@ -31,11 +32,11 @@ export default function HomePage() {
         <div className="hero-container">
           <img className="hero-img" src="/hero.png" alt="hero" />
         </div>
-        <div className="bubbles">
+        {/* <div className="bubbles">
           <div className="one"></div>
           <div className="two"></div>
           <div className="three"></div>
-        </div>
+        </div> */}
       </div>
       <div className="all-devices-container">
         <div className="for-sale-title __heading">
@@ -44,37 +45,58 @@ export default function HomePage() {
         </div>
         <CardList />
       </div>
-      <div className="shop-by-brand">
-        <h2 className="__heading">Shop By Brand</h2>
-        <div className="brands-container">
-          {brands?.map((brand) => (
-            <img src={`${brand}.png`} alt={brand} />
-          ))}
-        </div>
-      </div>
       <div className="shop-by-price">
         <h2 className="__heading">Shop By Price</h2>
         <div className="container">
           <div>
-            <p>under <br/> Rs.5000</p>
+            <p>
+              under <br /> Rs.5000
+            </p>
             <img src="arrow-forward-btn.png" alt="" />
           </div>
           <div>
-            <p>under <br/> Rs.6000</p>
+            <p>
+              under <br /> Rs.6000
+            </p>
             <img src="arrow-forward-btn.png" alt="" />
           </div>
           <div>
-            <p>under <br/> Rs.7000</p>
+            <p>
+              under <br /> Rs.7000
+            </p>
             <img src="arrow-forward-btn.png" alt="" />
           </div>
           <div>
-            <p>under <br/> Rs.8000</p>
+            <p>
+              under <br /> Rs.8000
+            </p>
             <img src="arrow-forward-btn.png" alt="" />
           </div>
           <div>
-            <p>under <br/> Rs.9000</p>
+            <p>
+              custom <br /> price
+            </p>
             <img src="arrow-forward-btn.png" alt="" />
           </div>
+        </div>
+      </div>
+      <div className="shop-by-brand">
+        <h2 className="__heading">Shop By Brand</h2>
+        <div className="brands-container">
+          {brands?.map((brand) => (
+            <img src={`${brand}.png`} alt={brand} key={brand} />
+          ))}
+        </div>
+      </div>
+      <div className="shop-by-year">
+        <h2 className="__heading">Shop By Launch Date</h2>
+        <div className="container">
+          <div>2022</div>
+          <div>2021</div>
+          <div>2020</div>
+          <div>2019</div>
+          <div>2018</div>
+          {/* <div>custom year</div> */}
         </div>
       </div>
     </div>

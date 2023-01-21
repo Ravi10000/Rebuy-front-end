@@ -1,8 +1,12 @@
 .spinner-container{
+    // height: 100%;
+    // width: 100%;
     display: grid;
     place-content: center;
-    height: 100%;
-    width: 100%;
+    justify-self: stretch;
+    // align-items: center;
+    // outline: 2px solid red;
+    // justify-content: center;
     .spinner{
         width: 50px;
         aspect-ratio: 1/1;
@@ -15,7 +19,6 @@
 }
 
 @keyframes spin {
-    from{}
     to{
         transform: rotate(360deg);
     }

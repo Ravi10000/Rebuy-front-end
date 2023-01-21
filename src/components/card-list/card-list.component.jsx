@@ -10,18 +10,22 @@ import { createStructuredSelector } from "reselect";
 
 // actions
 import {
-  initializeProducts,
+  // initializeProducts,
   updateProducts,
+  initiateFetching,
 } from "../../redux/shop/shop.actions";
 
 // selectors
 import {
   selectProducts,
   selectProductsCount,
+  selectIsFetchingProducts,
+  selectSkip,
+  selectHasMore,
 } from "../../redux/shop/shop.selectors";
 
 // api imports
-import { fetchAllProducts, fetchMoreProducts } from "../../utils/api";
+import { fetchMoreProducts } from "../../utils/api";
 
 // components
 import Card from "../card/card.component";
@@ -31,45 +35,48 @@ import Btn from "../btn/btn.component";
 function CardList({
   products,
   productsCount,
-  initializeProducts,
+  skip,
+  hasMore,
+  initiateFetching,
+  isFetchingProducts,
+  // initializeProducts,
   updateProducts,
 }) {
-  const [isFetching, setIsFetching] = useState(true);
-  const [hasMoreProducts, setHasMoreProducts] = useState(true);
-  const [skip, setSkip] = useState(0);
+  // const [isFetching, setIsFetching] = useState(true);
+  // const [hasMoreProducts, setHasMoreProducts] = useState(true);
+  // const [skip, setSkip] = useState(0);
 
-  useEffect(() => {
-    (async function () {
-      const { data } = await fetchAllProducts();
-      const currentProductsCount = data?.products?.length;
-      console.log(currentProductsCount);
-      setSkip(currentProductsCount || 0);
-      initializeProducts(data);
-      setIsFetching(false);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async function () {
+  //     const { data } = await fetchAllProducts();
+  //     const currentProductsCount = data?.products?.length;
+  //     console.log(currentProductsCount);
+  //     setSkip(currentProductsCount || 0);
+  //     initializeProducts(data);
+  //     setIsFetching(false);
+  //   })();
+  // }, []);
 
   async function handleFetchingMoreProducts() {
-    setIsFetching(true);
+    initiateFetching();
     const { data } = await fetchMoreProducts({ skip, limit: 6 });
-    setIsFetching(false);
-    console.log({ moreProducts: data });
-    setSkip((prevSkip) => prevSkip + 10);
+    // console.log({ moreProducts: data });
+    // setSkip((prevSkip) => prevSkip + 10);
 
     if (data?.error) {
-      setHasMoreProducts(false);
+      // setHasMoreProducts(false);
       return;
     }
 
     updateProducts([...products, ...data?.products]);
-    console.log([...products, ...data?.products]);
-    const totalProductsCount = products?.length + data?.products?.length;
-    if (totalProductsCount >= productsCount) {
-      setHasMoreProducts(false);
-      return;
-    }
+    // console.log([...products, ...data?.products]);
+    // const totalProductsCount = products?.length + data?.products?.length;
+    // if (totalProductsCount >= productsCount) {
+    //   // setHasMoreProducts(false);
+    //   return;
+    // }
 
-    setSkip(totalProductsCount);
+    // setSkip(totalProductsCount);
   }
   return (
     <>
@@ -80,9 +87,9 @@ function CardList({
           ))}
         </div>
       )}
-      {isFetching ? (
-        <Spinner md/>
-      ) : !hasMoreProducts ? (
+      {isFetchingProducts ? (
+        <Spinner md />
+      ) : !hasMore ? (
         <p className="end-msg">you've seen it all.</p>
       ) : (
         <p className="__link" onClick={handleFetchingMoreProducts}>
@@ -95,9 +102,13 @@ function CardList({
 const mapStateToProps = createStructuredSelector({
   products: selectProducts,
   productsCount: selectProductsCount,
+  isFetchingProducts: selectIsFetchingProducts,
+  skip: selectSkip,
+  hasMore: selectHasMore,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  initiateFetching: () => dispatch(initiateFetching()),
   initializeProducts: (productsInfo) =>
     dispatch(initializeProducts(productsInfo)),
   updateProducts: (products) => dispatch(updateProducts(products)),

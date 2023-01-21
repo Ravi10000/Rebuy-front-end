@@ -8,7 +8,7 @@
     border-radius: 10px;
     // outline: 1px solid var(--secondary-clr);
     transition: all .2s ease-in-out;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+    border: 1px solid rgba(128, 128, 128, 0.356);
 
 
     .card-img {
@@ -29,11 +29,7 @@
         background-color: var(--background-clr-v1);
         padding: 10px 20px;
         border-radius: 100vmax;
-        // color: green($color: #000000);
-        color: var(--primary-clr);
-        // color: var(--red);
-        // font-size: 1.2rem;
-        font-weight: 500;
+        color: var(--red);
     }
 
     .quality-container {
@@ -68,7 +64,7 @@
 
 @media (min-width: 800px) {
     .card {
-        border: none;
+        // border: none;
         max-width: 300px;
     }
 }

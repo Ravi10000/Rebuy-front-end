@@ -1,8 +1,8 @@
 import "./spinner.styles.scss";
 
-export default function Spinner({ md, lg, sm }) {
+export default function Spinner({ md, sm }) {
   const spinnerStyles = {
-    width: lg ? "50px" : md ? "35px" : "25px",
+    width: sm ? "25px" : md ? "35px" : "50px",
   };
   return (
     <div className="spinner-container">

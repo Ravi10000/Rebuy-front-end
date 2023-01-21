@@ -10,6 +10,9 @@ export const initializeProducts = (productsInfo) => ({
     payload: productsInfo
 });
 
+export const initiateFetching = ()=> ({
+    type: SHOP_ACTION_TYPES.FETCHING_PRODUCTS
+})
 // export const fetchProductsStart = ()=>({
 //     type: SHOP_ACTION_TYPES.FETCH_PRODUCTS_START
 // })

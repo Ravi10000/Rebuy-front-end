@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { signIn } from "../../redux/user/user.actions";
 import { setFlash } from "../../redux/flash/flash.actions";
 import { signInUser } from "../../utils/api";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 
 function SignInPage({ history, signIn, flash }) {
   const {
@@ -40,6 +41,7 @@ function SignInPage({ history, signIn, flash }) {
   };
   return (
     <div className="signin-page">
+            <ScrollToTop/>
       <div className="container">
         <h1 className="signin-title">Log in</h1>
         <form

@@ -5,7 +5,6 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 
 function ProfilePage({user}) {
-    console.log(user);
   return (
     <div className="profile-page">
       <div className="container">

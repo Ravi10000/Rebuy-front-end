@@ -91,5 +91,6 @@ a {
 @keyframes scale {
   to {
     box-shadow: 2px 2px 20px var(--secondary-clr);
+    transform: scale(1.05);
   }
 }

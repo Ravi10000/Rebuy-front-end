@@ -6,7 +6,6 @@ const BASE_URL = "/api/";
 
 export async function fetchAllProducts() {
   const response = await axios.get(`${BASE_URL}products`);
-  console.log({data: response?.data});
   return response;
 }
 
