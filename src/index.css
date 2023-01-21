@@ -69,8 +69,27 @@ a {
   transition: transform 0.3s ease-out;
 }
 
+.__click-animation {
+  animation: click 0.25s ease-in-out forwards;
+}
+
 @media (hover: hover) {
   .__link:hover::after {
     transform: scaleX(1);
+  }
+}
+
+@keyframes click {
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  to {
+    box-shadow: 2px 2px 20px var(--secondary-clr);
   }
 }

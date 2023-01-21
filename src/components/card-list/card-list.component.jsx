@@ -81,12 +81,12 @@ function CardList({
         </div>
       )}
       {isFetching ? (
-        <Spinner />
+        <Spinner md/>
       ) : !hasMoreProducts ? (
-        <p>you've seen it all.</p>
+        <p className="end-msg">you've seen it all.</p>
       ) : (
         <p className="__link" onClick={handleFetchingMoreProducts}>
-          Show More
+          show more
         </p>
       )}
     </>

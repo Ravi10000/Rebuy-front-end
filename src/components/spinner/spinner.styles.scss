@@ -4,8 +4,8 @@
     height: 100%;
     width: 100%;
     .spinner{
-        height: 50px;
         width: 50px;
+        aspect-ratio: 1/1;
         border: 2px solid var(--primary-clr);
         border-top-color: var(--secondary-clr);
         border-left-color: var(--secondary-clr);

@@ -1,4 +1,4 @@
-button.btn{
+button.btn {
     font-size: 1.3rem;
     padding: 12px 30px;
     border-radius: 15px;
@@ -9,12 +9,14 @@ button.btn{
     font-weight: 500;
     border: 2px solid var(--primary-clr);
     display: flex;
+
     &.btn-secondary {
         background-color: white;
         color: var(--primary-clr);
         border: 2px solid #B0B1DF;
     }
-    .button-spinner{
+
+    .button-spinner {
         margin-left: 5px;
         height: 25px;
         width: 25px;
@@ -24,12 +26,12 @@ button.btn{
         border-radius: 100%;
         animation: spin .5s linear infinite;
     }
-    
+
 }
 
 @media (hover: hover) {
-    button.btn{
-        &:hover{
+    button.btn {
+        &:hover {
             // background-color: var(--btn-text-clr);
             // color: var(--primary-clr);
             // border: 2px solid var(--primary-clr);

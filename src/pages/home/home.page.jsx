@@ -3,6 +3,7 @@ import "./home.styles.scss";
 import Logo from "../../components/logo/logo.component";
 import Btn from "../../components/btn/btn.component";
 import CardList from "../../components/card-list/card-list.component";
+import { brands } from "../../utils/brands";
 // import { Typewriter } from 'react-simple-typewriter'
 import { Link } from "react-router-dom";
 export default function HomePage() {
@@ -46,10 +47,34 @@ export default function HomePage() {
       <div className="shop-by-brand">
         <h2 className="__heading">Shop By Brand</h2>
         <div className="brands-container">
-          <img src="/apple.png" alt="" />
-          <img src="/vivo.png" alt="" />
-          <img src="mi.png" alt="" />
-          <img src="oneplus.png" alt="" />
+          {brands?.map((brand) => (
+            <img src={`${brand}.png`} alt={brand} />
+          ))}
+        </div>
+      </div>
+      <div className="shop-by-price">
+        <h2 className="__heading">Shop By Price</h2>
+        <div className="container">
+          <div>
+            <p>under <br/> Rs.5000</p>
+            <img src="arrow-forward-btn.png" alt="" />
+          </div>
+          <div>
+            <p>under <br/> Rs.6000</p>
+            <img src="arrow-forward-btn.png" alt="" />
+          </div>
+          <div>
+            <p>under <br/> Rs.7000</p>
+            <img src="arrow-forward-btn.png" alt="" />
+          </div>
+          <div>
+            <p>under <br/> Rs.8000</p>
+            <img src="arrow-forward-btn.png" alt="" />
+          </div>
+          <div>
+            <p>under <br/> Rs.9000</p>
+            <img src="arrow-forward-btn.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
