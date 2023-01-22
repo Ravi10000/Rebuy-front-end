@@ -4,9 +4,10 @@
     .product-info-container {
         font-size: 1.2rem;
         margin: 50px auto;
-
+        display: grid;
+        place-items: center;
         .img-container {
-            margin-left: 20%;
+            // margin-left: 10%;
             width: 80%;
             aspect-ratio: 1/1;
             border-radius: 25px;
@@ -41,12 +42,12 @@
             .quality {
                 display: flex;
 
-                .img {
-                    margin-left: 10px;
-                    height: 20px;
-                    width: 20px;
-                    background-color: var(--primary-clr);
-                }
+                // .img {
+                //     margin-left: 10px;
+                //     height: 20px;
+                //     width: 20px;
+                //     background-color: var(--primary-clr);
+                // }
             }
 
             .device-color {
@@ -76,10 +77,13 @@
             }
 
             .buttons {
+                width: 100%;
                 margin-bottom: 50px;
                 display: flex;
-                width: 100%;
                 justify-content: space-evenly;
+                button:first-child{
+                    margin-right: 10px;
+                }
             }
         }
     }
@@ -204,6 +208,9 @@
 
                 .buttons {
                     margin-top: 50px;
+                    button:first-child{
+                        margin-right: 0;
+                    }
                 }
             }
 
