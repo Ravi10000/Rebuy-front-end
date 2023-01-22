@@ -1,12 +1,12 @@
 .product-page {
     min-height: 100vh;
-    display: grid;
 
     .product-info-container {
         font-size: 1.2rem;
         margin: 50px auto;
 
         .img-container {
+            margin-left: 20%;
             width: 80%;
             aspect-ratio: 1/1;
             border-radius: 25px;
@@ -84,7 +84,7 @@
         }
     }
 
-    .description-container {
+    .specs-container {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -98,10 +98,7 @@
             font-size: 3rem;
         }
 
-        .description {
-            // min-width: 500px;
-            // outline: 2px solid tomato;
-            // padding: 20px;
+        .specs {
             border-collapse: collapse;
 
             tr:first-child {
@@ -111,9 +108,9 @@
                     padding-top: 50px;
                 }
 
-                th {
-                    border-top-left-radius: 15px;
-                }
+                // th {
+                //     border-top-left-radius: 15px;
+                // }
             }
 
             tr:last-child {
@@ -121,7 +118,7 @@
                 th,
                 td {
                     padding-bottom: 50px;
-                    border-bottom-left-radius: 15px;
+                    // border-bottom-left-radius: 15px;
                 }
             }
 
@@ -157,10 +154,33 @@
             align-items: center;
         }
 
-        .description-container {
-            .description {
+        .specs-container {
+            display: grid;
+            place-items: center;
+
+            h2{
+                place-self: flex-start;
+                margin-left: 10%;
+            }
+            .specs {
+                max-width: 80%;
                 td {
                     min-width: 300px;
+                }
+
+                tr:first-child {
+
+                    th {
+                        border-top-left-radius: 15px;
+                    }
+                }
+
+                tr:last-child {
+
+                    th,
+                    td {
+                        border-bottom-left-radius: 15px;
+                    }
                 }
             }
         }
@@ -176,6 +196,7 @@
 
             .img-container {
                 width: 30%;
+                margin-left: 0;
             }
 
             .info-container {
@@ -188,11 +209,10 @@
 
         }
 
-        .description-container {
-            max-width: 100vw;
+        .specs-container {
+
             h2 {
                 align-self: flex-start;
-                margin-left: 20%;
             }
 
         }

@@ -36,7 +36,7 @@ function ProductPage({ match, history }) {
     <div className="product-page">
       <ScrollToTop />
       {!product ? (
-        <Spinner />
+        <Spinner page/>
       ) : (
         <>
           <div className="product-info-container">
@@ -50,22 +50,22 @@ function ProductPage({ match, history }) {
             <div className="info-container">
               <div className="title-container">
                 <h2>Apple Iphone X</h2>
-                <p>4gb/64gb</p>
+                <p>{product?.ram + 'gb/' + product?.storage + 'gb'}</p>
               </div>
               <div className="quality">
-                <p>Refurbished - good</p>
-                <div className="img"></div>
+                <p>Refurbished - {product?.quality.toUpperCase()}</p>
+                {/* <div className="img"></div> */}
               </div>
               <div className="device-color">
-                <p>space gray</p>
+                <p>{product?.color}</p>
                 <div
                   className="color-box"
-                  style={{ backgroundColor: "gray" }}
+                  style={{ backgroundColor: product?.color }}
                 ></div>
               </div>
               <div className="price-container">
-                <div className="price">Rs.22999</div>
-                <div className="msg">only 3 left at this price</div>
+                <div className="price">Rs.{product?.price} only</div>
+                {/* <div className="msg">only 3 left at this price</div> */}
               </div>
               <div className="buttons">
                 <Btn>Buy Now</Btn>
@@ -73,9 +73,9 @@ function ProductPage({ match, history }) {
               </div>
             </div>
           </div>
-          <div className="description-container">
-            <h2>Descriptions</h2>
-            <table className="description">
+          <div className="specs-container">
+            <h2>Specifications</h2>
+            <table className="specs">
               <tbody>
                 {keys.map((key, index) => {
                   return (
