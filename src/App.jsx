@@ -33,19 +33,19 @@ function App({ currentUser, flash, signIn, initializeProducts }) {
       try {
         // fetch user
         // const { data } = await axios.get("https://mrphonex-api.onrender.com/api/user");
-        const { data } = await fetchUserFromServer();
+        const { data: user } = await fetchUserFromServer();
         setFetchingUser(false);
-        if (data.error) {
-          console.log(data.error);
+        if (user.error) {
+          console.log(user.error);
           flash({
             type: "error",
-            message: data.error.message,
+            message: user.error.message,
           });
           return;
         }
 
         // signin user and products in redux
-        signIn(data.user);
+        signIn(user);
       } catch (error) {
         console.log(error.message);
         flash({
@@ -58,8 +58,12 @@ function App({ currentUser, flash, signIn, initializeProducts }) {
 
   useEffect(() => {
     (async function () {
-      const { data } = await fetchAllProducts();
-      initializeProducts(data);
+      const { data: products } = await fetchAllProducts();
+      // const { data: user } = await fetchUser();
+      // if (user) {
+      //   signIn(user);
+      // }
+      initializeProducts(products);
       // const currentProductsCount = data?.products?.length;
       // console.log(currentProductsCount);
       // setSkip(currentProductsCount || 0);

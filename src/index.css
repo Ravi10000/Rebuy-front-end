@@ -94,3 +94,7 @@ a {
     transform: scale(1.05);
   }
 }
+
+a{
+  color: var(--text-clr);
+}

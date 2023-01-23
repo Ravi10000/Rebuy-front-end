@@ -41,7 +41,7 @@ function SignInPage({ history, signIn, flash }) {
   };
   return (
     <div className="signin-page">
-            <ScrollToTop/>
+      <ScrollToTop />
       <div className="container">
         <h1 className="signin-title">Log in</h1>
         <form
@@ -89,12 +89,11 @@ function SignInPage({ history, signIn, flash }) {
         <Btn form="sign-in-form" __isLoading={isLoading}>
           Log in
         </Btn>
-        <p className="create-new-account-text">
-          New Here?{" "}
-          <span>
-            <Link to="/signup" className="__link">Create New Account</Link>
-          </span>
-        </p>
+        <Link to="/signup">
+          <p className="create-new-account-text">
+            New Here? <span className="__link">Create New Account</span>
+          </p>
+        </Link>
       </div>
     </div>
   );

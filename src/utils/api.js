@@ -11,6 +11,7 @@ export async function fetchAllProducts() {
 
 export async function signUpUser(user) {
   console.log(user);
+  // alert('user')
   const response = await axios.post(`${BASE_URL}user/signup`, user);
   return response;
 }
@@ -20,6 +21,10 @@ export async function signInUser(user) {
   return response;
 }
 
+// export async function fetchUser() {
+//   const response = await axios.get(`${BASE_URL}user`);
+//   return reponse;
+// }
 export async function fetchUserFromServer() {
   const response = await axios.get(`${BASE_URL}user`);
   return response;

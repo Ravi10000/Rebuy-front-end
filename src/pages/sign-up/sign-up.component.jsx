@@ -10,33 +10,37 @@ import { setFlash } from "../../redux/flash/flash.actions";
 import { connect } from "react-redux";
 import { signIn } from "../../redux/user/user.actions";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
+import { withRouter } from "react-router-dom";
 
-function SignUpPage({ flash, signIn }) {
+function SignUpPage({ flash, signIn, history }) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+  const password = watch("password");
   const [isLoading, setIsLoading] = useState(false);
 
   async function submitForm(data) {
     console.log(data);
     try {
       setIsLoading(true);
-      const { email: username, password } = data;
-      console.log(data);
+      const { email, password } = data;
       const res = await signUpUser({
-        username,
+        email,
         password,
         "phone number": data["phone number"],
       });
+      setIsLoading(false);
+      console.log({ data: res.data });
       // const res = await axios.post(
       //   "https://mrphonex-api.onrender.com/api/user/signup",
       //   {
       //     user: {
       //       username,
       //       password,
-      //       "phone number": data["phone number"],
+      //       "phone number": res.data["phone number"],
       //     },
       //   }
       // );
@@ -47,11 +51,11 @@ function SignUpPage({ flash, signIn }) {
           message: res.data.error.message,
         });
         // history.push("/signup");
-        setIsLoading(false);
+        // setIsLoading(false);
         return;
       }
-      signIn(res.data.user);
-      // history.push("/profile");
+      signIn(res.data);
+      history.push("/profile");
     } catch (err) {
       console.log(err.message);
     }
@@ -141,6 +145,10 @@ function SignUpPage({ flash, signIn }) {
                   value: 16,
                   message: "length should be 8 to 16 characters",
                 },
+                pattern: {
+                  value: RegExp(password),
+                  message: "password does not match",
+                },
               }),
             }}
           />
@@ -148,14 +156,11 @@ function SignUpPage({ flash, signIn }) {
         <Btn form="sign-up-form" __isLoading={isLoading}>
           Sign up
         </Btn>
-        <p className="create-new-account-text">
-          Already Have An Account?{" "}
-          <span>
-            <Link to="/signin" className="__link">
-              Log in
-            </Link>
-          </span>
-        </p>
+        <Link to="/signin">
+          <p className="create-new-account-text">
+            Already Have An Account? <span className="__link">Log in</span>
+          </p>
+        </Link>
       </div>
     </div>
   );
@@ -168,4 +173,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default connect(null, mapDispatchToProps)(withRouter(SignUpPage));
