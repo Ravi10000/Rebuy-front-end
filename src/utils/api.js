@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = `http://localhost:5000`;
+// axios.defaults.baseURL = `http://localhost:5000`;
 // const BASE_URL = "http://localhost:5000/api/";
 const BASE_URL = "/api/";
 
@@ -41,3 +41,5 @@ export async function fetchMoreProducts({ skip, limit }) {
   );
   return response;
 }
+
+export default axios

@@ -24,11 +24,12 @@ import { signIn } from "./redux/user/user.actions";
 import { setFlash } from "./redux/flash/flash.actions";
 import { fetchAllProducts } from "./utils/api";
 import { initializeProducts } from "./redux/shop/shop.actions";
+import axios from "./utils/api";
 
 function App({ currentUser, flash, signIn, initializeProducts }) {
   const [isFetchingUser, setFetchingUser] = useState(true);
-
   useEffect(() => {
+
     (async () => {
       try {
         // fetch user
@@ -59,14 +60,7 @@ function App({ currentUser, flash, signIn, initializeProducts }) {
   useEffect(() => {
     (async function () {
       const { data: products } = await fetchAllProducts();
-      // const { data: user } = await fetchUser();
-      // if (user) {
-      //   signIn(user);
-      // }
       initializeProducts(products);
-      // const currentProductsCount = data?.products?.length;
-      // console.log(currentProductsCount);
-      // setSkip(currentProductsCount || 0);
     })();
   }, []);
 
