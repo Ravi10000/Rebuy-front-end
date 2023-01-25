@@ -1,65 +1,74 @@
-.popup {
+// .popup {
+//   position: fixed;
+//   z-index: 11;
+//   top: 10%;
+//   right: 50%;
+//   transform: translate(50%);
+//   overflow: hidden;
+//   cursor: pointer;
+//   .popup-msg {
+//     background-color: var(--danger-bg);
+//     padding: 12px 25px;
+//     border-radius: 3px;
+//     color: var(--danger);
+//     max-width: 300px;
+//     font-weight: var(--medium);
+//     position: relative;
+//     right: -200%;
+//     animation: slideMobilePopup 1s ease-in-out forwards;
+//   }
+// }
+// .popup.success {
+//   .popup-msg {
+//     background-color: var(--success-bg);
+//     color: var(--success);
+//   }
+// }
+// .popup.info {
+//   .popup-msg {
+//     background-color: var(--info-bg);
+//     color: var(--info);
+//   }
+// }
+
+// @keyframes slideMobilePopup {
+//   0% {
+//   }
+//   70% {
+//     right: 20%;
+//   }
+//   100% {
+//     right: 0%;
+//   }
+// }
+
+// @keyframes slideDesktopPopup {
+//   0% {
+//     right: -100%;
+//   }
+//   70% {
+//     right: 40%;
+//   }
+//   100% {
+//     right: 0%;
+//   }
+// }
+
+// @media (min-width: 800px) {
+//   .popup {
+//     .popup-msg {
+//       top: 20%;
+//       right: 20%;
+//       animation: slideDesktopPopup 1s ease-in-out forwards;
+//     }
+//   }
+// }
+
+.popup{
   position: fixed;
-  z-index: 11;
-  top: 10%;
-  right: 50%;
-  transform: translate(50%);
-  overflow: hidden;
-  cursor: pointer;
-  .popup-msg {
-    background-color: var(--danger-bg);
-    padding: 12px 25px;
-    border-radius: 3px;
-    color: var(--danger);
-    max-width: 300px;
-    font-weight: var(--medium);
-    position: relative;
-    right: -200%;
-    animation: slideMobilePopup 1s ease-in-out forwards;
-  }
-}
-.popup.success {
-  .popup-msg {
-    background-color: var(--success-bg);
-    color: var(--success);
-  }
-}
-.popup.info {
-  .popup-msg {
-    background-color: var(--info-bg);
-    color: var(--info);
-  }
-}
-
-@keyframes slideMobilePopup {
-  0% {
-  }
-  70% {
-    right: 20%;
-  }
-  100% {
-    right: 0%;
-  }
-}
-
-@keyframes slideDesktopPopup {
-  0% {
-    right: -100%;
-  }
-  70% {
-    right: 40%;
-  }
-  100% {
-    right: 0%;
-  }
-}
-
-@media (min-width: 800px) {
-  .popup {
-    .popup-msg {
-      top: 20%;
-      right: 20%;
-      animation: slideDesktopPopup 1s ease-in-out forwards;
-    }
-  }
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  color: var(--primary-clr);
+  z-index: 4000000;
 }

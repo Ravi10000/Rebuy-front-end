@@ -1,45 +1,46 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = `http://localhost:5000`;
-// const BASE_URL = "http://localhost:5000/api/";
-const BASE_URL = "/api/";
+axios.defaults.baseURL = `/api`;
 
-export async function fetchAllProducts() {
-  const response = await axios.get(`${BASE_URL}products`);
-  return response;
-}
-
+// /api/user
 export async function signUpUser(user) {
-  console.log(user);
-  // alert('user')
-  const response = await axios.post(`${BASE_URL}user/signup`, user);
+  const response = await axios.post(`/user/signup`, user);
   return response;
 }
 
 export async function signInUser(user) {
-  const response = await axios.post(`${BASE_URL}user/signin`, user);
+  console.log('signinng in user');
+  const response = await axios.post(`/user/signin`, user);
   return response;
 }
 
-// export async function fetchUser() {
-//   const response = await axios.get(`${BASE_URL}user`);
-//   return reponse;
-// }
+export async function signOutUser() {
+  const response = await axios.post("/user/signout");
+  return response;
+}
+
 export async function fetchUserFromServer() {
-  const response = await axios.get(`${BASE_URL}user`);
+  const response = await axios.get(`/user`);
+  return response;
+}
+
+// /api/products
+
+export async function fetchAllProducts() {
+  const response = await axios.get("/products");
   return response;
 }
 
 export async function fetchProductById(id) {
-  const response = await axios.get(`${BASE_URL}products/${id}`);
+  const response = await axios.get(`/products/${id}`);
   return response;
 }
 
 export async function fetchMoreProducts({ skip, limit }) {
   const response = await axios.get(
-    `${BASE_URL}products/?skip=${skip}&limit=${limit || 10}`
+    `/products/?skip=${skip}&limit=${limit || 10}`
   );
   return response;
 }
 
-export default axios
+export default axios;

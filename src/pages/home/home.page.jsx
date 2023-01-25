@@ -7,7 +7,12 @@ import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component"
 import { brands } from "../../utils/brands";
 // import { Typewriter } from 'react-simple-typewriter'
 import { Link } from "react-router-dom";
-export default function HomePage() {
+
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+function HomePage({currentUser}) {
   return (
     <div className="home-page">
       <ScrollToTop />
@@ -20,14 +25,16 @@ export default function HomePage() {
               <span>Best Prices</span>
             </p>
           </div>
-          <div className="banner-btns">
-            <Link to="/signin">
-              <Btn>Log in</Btn>
-            </Link>
-            <Link to="/signup">
-              <Btn __btn_secondary>Sign up</Btn>
-            </Link>
-          </div>
+          {!currentUser && (
+            <div className="banner-btns">
+              <Link to="/signin">
+                <Btn>Log in</Btn>
+              </Link>
+              <Link to="/signup">
+                <Btn __btn_secondary>Sign up</Btn>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="hero-container">
           <img className="hero-img" src="/hero.png" alt="hero" />
@@ -102,3 +109,9 @@ export default function HomePage() {
     </div>
   );
 }
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(HomePage);
