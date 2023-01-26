@@ -4,5 +4,10 @@ const selectUser = (state) => state.user;
 
 export const selectCurrentUser = createSelector(
   [selectUser],
-  (user) => user
+  (user) => user.currentUser
+);
+
+export const selectIsFetchingUser = createSelector(
+  [selectUser],
+  (user) => user.isFetchingUser
 );

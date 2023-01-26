@@ -26,8 +26,9 @@ function SignUpPage({ flash, signIn, history }) {
     console.log(data);
     try {
       setIsLoading(true);
-      const { email, password } = data;
+      const { name, email, password } = data;
       const res = await signUpUser({
+        name,
         email,
         password,
         "phone number": data["phone number"],
@@ -153,7 +154,7 @@ function SignUpPage({ flash, signIn, history }) {
             }}
           />
         </form>
-        <Btn form="sign-up-form" __isLoading={isLoading}>
+        <Btn form="sign-up-form" __isloading={isLoading}>
           Sign up
         </Btn>
         <Link to="/signin">

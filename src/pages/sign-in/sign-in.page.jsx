@@ -86,7 +86,7 @@ function SignInPage({ history, signIn, flash }) {
           />
         </form>
         <p className="forgot-password-text">forgot password?</p>
-        <Btn form="sign-in-form" __isLoading={isLoading}>
+        <Btn form="sign-in-form" __isloading={isLoading}>
           Log in
         </Btn>
         <Link to="/signup">

@@ -11,12 +11,10 @@ import ProductPage from "./pages/product/Product.page";
 import PopUp from "./components/popup/popup.component";
 
 // components
-import ScrollToTop from "./components/scroll-to-top/scroll-to-top.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "./redux/user/user.selectors";
 import ProfilePage from "./pages/profile/profile.page";
 import { fetchUserFromServer } from "./utils/api";
 import { signIn } from "./redux/user/user.actions";
@@ -26,17 +24,30 @@ import { fetchAllProducts } from "./utils/api";
 import { initializeProducts } from "./redux/shop/shop.actions";
 import Protect from "./components/protected-route/protected-route";
 import ProtectAuth from "./components/protected-authenticate/protected-authenticate";
+import CartPage from "./pages/cart/cart.page";
+import {
+  startFetchingUser,
+  endOfFetchingUser,
+} from "./redux/user/user.actions";
 
-function App({ currentUser, flash, signIn, initializeProducts, setFlash }) {
-  const [isFetchingUser, setFetchingUser] = useState(true);
+function App({
+  flash,
+  signIn,
+  initializeProducts,
+  setFlash,
+  startFetchingUser,
+  endOfFetchingUser,
+}) {
   useEffect(() => {
     (async () => {
       try {
         // fetch user
         // const { data } = await axios.get("https://mrphonex-api.onrender.com/api/user");
+        startFetchingUser();
         const { data: user } = await fetchUserFromServer();
+        endOfFetchingUser();
         console.log({ user });
-        setFetchingUser(false);
+        // setFetchingUser(false);
         if (user.error) {
           console.log(user.error);
           setFlash({
@@ -56,7 +67,7 @@ function App({ currentUser, flash, signIn, initializeProducts, setFlash }) {
         });
       }
     })();
-  }, [signIn, setFlash]);
+  }, []);
 
   useEffect(() => {
     (async function () {
@@ -73,6 +84,7 @@ function App({ currentUser, flash, signIn, initializeProducts, setFlash }) {
         <ProtectAuth exact path="/signin" component={SignInPage} />
         <ProtectAuth exact path="/signup" component={SignUpPage} />
         <Protect exact path="/profile" component={ProfilePage} />
+        <Protect exact path="/cart" component={CartPage} />
         <Route exact path="/products/:id" component={ProductPage} />
         <Route path="/" component={HomePage} />
       </Switch>
@@ -83,7 +95,6 @@ function App({ currentUser, flash, signIn, initializeProducts, setFlash }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
   flash: selectFlash,
 });
 
@@ -92,6 +103,8 @@ const mapDispatchToProps = (dispatch) => ({
   setFlash: (flash) => dispatch(setFlash(flash)),
   initializeProducts: (productsInfo) =>
     dispatch(initializeProducts(productsInfo)),
+  startFetchingUser: () => dispatch(startFetchingUser()),
+  endOfFetchingUser: () => dispatch(endOfFetchingUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

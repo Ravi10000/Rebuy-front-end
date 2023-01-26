@@ -7,6 +7,7 @@ import Btn from "../../components/btn/btn.component";
 import { signOutUser } from "../../utils/api";
 import { signOut } from "../../redux/user/user.actions";
 import { useState } from "react";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 
 function ProfilePage({ user, signOut }) {
   const [isLoading, setIsLoading] = useState(null);
@@ -25,18 +26,23 @@ function ProfilePage({ user, signOut }) {
   }
   return (
     <>
+      <ScrollToTop />
       {!user ? (
         <Spinner page />
       ) : (
         <div className="profile-page">
           <div className="container">
-            <h1>Profile Page</h1>
             <img src="/profile-img.png" alt="profile" />
             <div className="info-container">
               <p className="name">{user?.name}</p>
               <p className="email">{user?.username}</p>
               <p className="phone">{user?.["phone number"]}</p>
-              <Btn onClick={handleSignOut} __isLoading={isLoading}>Sign out</Btn>
+              <div className="sign-out">
+                <a className="__link" onClick={handleSignOut}>
+                  Sign out
+                </a>
+                <div className="spinner"></div>
+              </div>
             </div>
           </div>
         </div>

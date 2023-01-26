@@ -18,3 +18,11 @@ export const setCurrentUser = (user) => ({
   type: USER_ACTION_TYPES.SET_CURRENT_USER,
   payload: user,
 });
+
+export const startFetchingUser = () => ({
+  type: USER_ACTION_TYPES.FETCHING_USER,
+});
+
+export const endOfFetchingUser = () => ({
+  type: USER_ACTION_TYPES.END_OF_FETCHING_USER,
+});

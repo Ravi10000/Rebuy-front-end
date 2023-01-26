@@ -4,7 +4,7 @@ import "./btn.styles.scss";
 export default function Btn({
   __styles,
   __btn_secondary,
-  __isLoading,
+  __isloading,
   // __handleClick,
   children,
   ...__otherProps
@@ -18,14 +18,17 @@ export default function Btn({
   return (
     <button
       className={`btn ${__btn_secondary && "btn-secondary"}`}
-      style={{...custom_styles, display: __isLoading ? 'flex' : 'inline-block'}}
+      style={{
+        ...custom_styles,
+        display: __isloading ? "flex" : "inline-block",
+      }}
       // onClick={() => {
       //   __handleClick && __handleClick();
       // }}
       {...__otherProps}
     >
       {children}
-      {__isLoading && <div className="button-spinner"></div>}
+      {__isloading && <div className="button-spinner"></div>}
     </button>
   );
 }

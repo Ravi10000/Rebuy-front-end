@@ -7,12 +7,16 @@ import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component"
 import { brands } from "../../utils/brands";
 // import { Typewriter } from 'react-simple-typewriter'
 import { Link } from "react-router-dom";
+import Spinner from "../../components/spinner/spinner.component";
 
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectIsFetchingUser,
+} from "../../redux/user/user.selectors";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-function HomePage({currentUser}) {
+function HomePage({ currentUser, isFetchingUser }) {
   return (
     <div className="home-page">
       <ScrollToTop />
@@ -25,15 +29,19 @@ function HomePage({currentUser}) {
               <span>Best Prices</span>
             </p>
           </div>
-          {!currentUser && (
-            <div className="banner-btns">
-              <Link to="/signin">
-                <Btn>Log in</Btn>
-              </Link>
-              <Link to="/signup">
-                <Btn __btn_secondary>Sign up</Btn>
-              </Link>
-            </div>
+          {isFetchingUser ? (
+            <Spinner />
+          ) : (
+            !currentUser && (
+              <div className="banner-btns">
+                <Link to="/signin">
+                  <Btn>Log in</Btn>
+                </Link>
+                <Link to="/signup">
+                  <Btn __btn_secondary>Sign up</Btn>
+                </Link>
+              </div>
+            )
           )}
         </div>
         <div className="hero-container">
@@ -112,6 +120,7 @@ function HomePage({currentUser}) {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isFetchingUser: selectIsFetchingUser,
 });
 
 export default connect(mapStateToProps)(HomePage);

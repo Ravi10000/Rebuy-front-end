@@ -1,18 +1,34 @@
 // import { useEffect} from 'react';
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectIsFetchingUser,
+} from "../../redux/user/user.selectors";
 import { Route, Redirect } from "react-router-dom";
+import Spinner from "../spinner/spinner.component";
 
-function ProtectAuth({ currentUser, ...otherProps }) {
-  if (currentUser) {
-    return <Redirect to="/profile" />;
-  }
-  return <Route {...otherProps} />;
+function ProtectAuth({ currentUser, isFetchingUser, ...otherProps }) {
+  return (
+    <>
+      {isFetchingUser ? (
+        <Spinner page/>
+      ) : currentUser ? (
+        <Redirect to="/profile" />
+      ) : (
+        <Route {...otherProps} />
+      )}
+    </>
+  );
+  // if (currentUser) {
+  //   return <Redirect to="/profile" />;
+  // }
+  // return <Route {...otherProps} />;
 }
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isFetchingUser: selectIsFetchingUser,
 });
 
 export default connect(mapStateToProps)(ProtectAuth);
