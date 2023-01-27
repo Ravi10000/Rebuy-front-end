@@ -30,10 +30,10 @@ function Header({ user, isFetchingUser }) {
       ) : (
         <div className="logged-in">
           <Link to="/cart">
-            <img src="cart.png" alt="" />
+            <img src="/cart.png" alt="" />
           </Link>
           <Link to="/profile">
-            <img src="user.png" alt="" />
+            <img src="/user.png" alt="" />
           </Link>
         </div>
       )}

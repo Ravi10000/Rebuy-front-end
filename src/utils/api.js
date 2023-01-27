@@ -9,7 +9,7 @@ export async function signUpUser(user) {
 }
 
 export async function signInUser(user) {
-  console.log('signinng in user');
+  console.log("signinng in user");
   const response = await axios.post(`/user/signin`, user);
   return response;
 }
@@ -40,6 +40,11 @@ export async function fetchMoreProducts({ skip, limit }) {
   const response = await axios.get(
     `/products/?skip=${skip}&limit=${limit || 10}`
   );
+  return response;
+}
+
+export async function addProductToCart({ productId }) {
+  const response = await axios.put(`/user/cart`, { productId });
   return response;
 }
 

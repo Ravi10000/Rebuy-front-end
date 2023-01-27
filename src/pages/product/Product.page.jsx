@@ -7,9 +7,20 @@ import Spinner from "../../components/spinner/spinner.component";
 import ImagesCarousel from "../../components/images-carousel/images-carousel.component";
 import { keys } from "../../utils/product-info";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
+import { addProductToCart } from "../../utils/api";
+import {
+  selectCurrentUser,
+  selectIsFetchingUser,
+} from "../../redux/user/user.selectors";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { Link } from "react-router-dom";
 
-function ProductPage({ match, history }) {
+function ProductPage({ match, history, currentUser, isFetchingUser }) {
   const [product, setProduct] = useState(null);
+  const [showCart, setShowCart] = useState(false);
+
+  // console.log({ currentUser, isFetchingUser });
   const values = [
     product?.brand,
     product?.model,
@@ -26,17 +37,31 @@ function ProductPage({ match, history }) {
     product?.gpu,
   ];
   useEffect(() => {
+    if (!isFetchingUser && product) {
+      if (!currentUser || currentUser.cart.includes(product._id)) {
+        setShowCart(false);
+      } else {
+        setShowCart(true);
+      }
+    }
     (async function () {
       const response = await fetchProductById(match?.params.id);
       if (response.data) setProduct(response.data);
       else console.log(response.error);
     })();
-  }, []);
+  }, [isFetchingUser, currentUser, product]);
+
+  async function handleAddToCart() {
+    alert(product?._id);
+    const response = await addProductToCart({ productId: product?._id });
+    console.log(response.data);
+  }
+
   return (
     <div className="product-page">
       <ScrollToTop />
       {!product ? (
-        <Spinner page/>
+        <Spinner page />
       ) : (
         <>
           <div className="product-info-container">
@@ -50,7 +75,7 @@ function ProductPage({ match, history }) {
             <div className="info-container">
               <div className="title-container">
                 <h2>Apple Iphone X</h2>
-                <p>{product?.ram + 'gb/' + product?.storage + 'gb'}</p>
+                <p>{product?.ram + "gb/" + product?.storage + "gb"}</p>
               </div>
               <div className="quality">
                 <p>Refurbished - {product?.quality.toUpperCase()}</p>
@@ -69,7 +94,20 @@ function ProductPage({ match, history }) {
               </div>
               <div className="buttons">
                 <Btn>Buy Now</Btn>
-                <Btn __btn_secondary>Add to cart</Btn>
+                {showCart ? (
+                  <Btn __btn_secondary onClick={handleAddToCart}>
+                    Add to cart
+                  </Btn>
+                ) : currentUser ? (
+                  <p>Added to cart</p>
+                ) : (
+                  <Link to="/signin">
+                    <p className="__link">
+                      log in to <br />
+                      add this item to cart
+                    </p>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -94,4 +132,9 @@ function ProductPage({ match, history }) {
   );
 }
 
-export default withRouter(ProductPage);
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  isFetchingUser: selectIsFetchingUser,
+});
+
+export default connect(mapStateToProps)(withRouter(ProductPage));
