@@ -1,47 +1,52 @@
 import "./App.scss";
 
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+// packages
 import { useEffect, useState } from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+// api
+import { fetchUserFromServer, fetchAllProducts } from "./utils/api";
+
+// actions
+import { setFlash } from "./redux/flash/flash.actions";
+import { initializeProducts } from "./redux/shop/shop.actions";
+import {
+  signIn,
+  startFetchingUser,
+  endOfFetchingUser,
+} from "./redux/user/user.actions";
+
+// selectors
+import { selectFlash } from "./redux/flash/flash.selectors";
 
 // pages
 import HomePage from "./pages/home/home.page";
 import SignInPage from "./pages/sign-in/sign-in.page";
 import SignUpPage from "./pages/sign-up/sign-up.component";
 import ProductPage from "./pages/product/Product.page";
-import PopUp from "./components/popup/popup.component";
+import ProfilePage from "./pages/profile/profile.page";
+import CartPage from "./pages/cart/cart.page";
 
 // components
+import PopUp from "./components/popup/popup.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import ProfilePage from "./pages/profile/profile.page";
-import { fetchUserFromServer } from "./utils/api";
-import { signIn } from "./redux/user/user.actions";
-import { selectFlash } from "./redux/flash/flash.selectors";
-import { setFlash } from "./redux/flash/flash.actions";
-import { fetchAllProducts } from "./utils/api";
-import { initializeProducts } from "./redux/shop/shop.actions";
-import Protect from "./components/protected-route/protected-route";
-import ProtectAuth from "./components/protected-authenticate/protected-authenticate";
-import CartPage from "./pages/cart/cart.page";
-import {
-  startFetchingUser,
-  endOfFetchingUser,
-} from "./redux/user/user.actions";
+import Protect from "./components/protected-route/protected-route.component";
+import ProtectAuth from "./components/protected-authenticate/protected-authenticate.component";
 
 function App({
   flash,
-  signIn,
-  initializeProducts,
   setFlash,
+  initializeProducts,
+  signIn,
   startFetchingUser,
   endOfFetchingUser,
 }) {
   useEffect(() => {
     (async () => {
       try {
-        // fetch user
         startFetchingUser();
         const { data: user } = await fetchUserFromServer();
         endOfFetchingUser();
@@ -53,8 +58,12 @@ function App({
           });
           return;
         }
-
-        // signin user and products in redux
+        if (user) {
+          setFlash({
+            type: "success",
+            message: "welcome back!",
+          });
+        }
         signIn(user);
       } catch (error) {
         console.log(error.message);

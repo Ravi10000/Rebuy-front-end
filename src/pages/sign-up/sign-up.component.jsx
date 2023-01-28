@@ -12,7 +12,7 @@ import { signIn } from "../../redux/user/user.actions";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 import { withRouter } from "react-router-dom";
 
-function SignUpPage({ flash, signIn, history }) {
+function SignUpPage({ setFlash, signIn, history }) {
   const {
     register,
     handleSubmit,
@@ -27,37 +27,32 @@ function SignUpPage({ flash, signIn, history }) {
     try {
       setIsLoading(true);
       const { name, email, password } = data;
-      const res = await signUpUser({
+      const { data: user } = await signUpUser({
         name,
         email,
         password,
         "phone number": data["phone number"],
       });
       setIsLoading(false);
-      console.log({ data: res.data });
-      // const res = await axios.post(
-      //   "https://mrphonex-api.onrender.com/api/user/signup",
-      //   {
-      //     user: {
-      //       username,
-      //       password,
-      //       "phone number": res.data["phone number"],
-      //     },
-      //   }
-      // );
-      if (res.data.error) {
-        console.error(res.data.error.message);
-        flash({
+      if (user.error) {
+        console.error(user.error.message);
+        setFlash({
           type: "error",
-          message: res.data.error.message,
+          message: user.error.message,
         });
-        // history.push("/signup");
-        // setIsLoading(false);
         return;
       }
-      signIn(res.data);
+      setFlash({
+        type: "success",
+        message: "signed up successfully!",
+      });
+      signIn(user);
       history.push("/profile");
     } catch (err) {
+      setFlash({
+        type: "error",
+        message: err.message,
+      });
       console.log(err.message);
     }
   }
@@ -170,7 +165,7 @@ function SignUpPage({ flash, signIn, history }) {
 function mapDispatchToProps(dispatch) {
   return {
     signIn: (user) => dispatch(signIn(user)),
-    flash: (flash) => dispatch(setFlash(flash)),
+    setFlash: (flash) => dispatch(setFlash(flash)),
   };
 }
 

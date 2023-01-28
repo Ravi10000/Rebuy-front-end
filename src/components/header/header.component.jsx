@@ -1,17 +1,23 @@
+// styles
 import "./header.styles.scss";
-import Logo from "../logo/logo.component";
+
+// packages
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
+// selectors
 import {
   selectCurrentUser,
-  selectIsFetchingUser
+  selectIsFetchingUser,
 } from "../../redux/user/user.selectors";
+
+// components
+import Logo from "../logo/logo.component";
 import Btn from "../btn/btn.component";
 import Spinner from "../spinner/spinner.component";
 
 function Header({ user, isFetchingUser }) {
-  console.log(isFetchingUser);
   return (
     <header>
       <div className="logo-container">
