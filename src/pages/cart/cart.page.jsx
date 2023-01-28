@@ -22,7 +22,7 @@ export default function CartPage() {
   }, []);
   return (
     <div className="cart-page">
-      <h1>Cart</h1>
+      <h1 className="__heading">Cart</h1>
       <div className="container">
         <CartList list={cartList} />
       </div>

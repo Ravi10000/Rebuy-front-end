@@ -49,8 +49,8 @@ export async function addProductToCart({ productId }) {
   return response;
 }
 
-export async function removeProductToCart({ productId }) {
-  const response = await axios.delete(`/user/cart`, { productId });
+export async function removeProductFromCart(productId) {
+  const response = await axios.delete(`/user/cart/${productId}`);
   return response;
 }
 
