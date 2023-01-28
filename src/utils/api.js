@@ -9,13 +9,12 @@ export async function signUpUser(user) {
 }
 
 export async function signInUser(user) {
-  console.log("signinng in user");
   const response = await axios.post(`/user/signin`, user);
   return response;
 }
 
 export async function signOutUser() {
-  const response = await axios.post("/user/signout");
+  const response = await axios.put("/user/signout");
   return response;
 }
 
@@ -43,8 +42,20 @@ export async function fetchMoreProducts({ skip, limit }) {
   return response;
 }
 
+// /api/user/cart
+
 export async function addProductToCart({ productId }) {
   const response = await axios.put(`/user/cart`, { productId });
+  return response;
+}
+
+export async function removeProductToCart({ productId }) {
+  const response = await axios.delete(`/user/cart`, { productId });
+  return response;
+}
+
+export async function getCartItems() {
+  const response = await axios.get("/user/cart");
   return response;
 }
 
