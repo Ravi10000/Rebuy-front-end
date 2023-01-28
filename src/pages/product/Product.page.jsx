@@ -127,12 +127,13 @@ function ProductPage({
               <div className="buttons">
                 <Btn>Buy Now</Btn>
                 {showCart ? (
-                  !isLoading ?
-                  <Btn __btn_secondary onClick={handleAddToCart}>
-                    Add to cart
-                  </Btn>
-                  :
-                  <Spinner sm/>
+                  !isLoading ? (
+                    <Btn __btn_secondary onClick={handleAddToCart}>
+                      Add to cart
+                    </Btn>
+                  ) : (
+                    <Spinner sm />
+                  )
                 ) : currentUser ? (
                   <p>Added to cart</p>
                 ) : (

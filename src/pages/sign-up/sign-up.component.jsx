@@ -23,10 +23,17 @@ function SignUpPage({ setFlash, signIn, history }) {
   const [isLoading, setIsLoading] = useState(false);
 
   async function submitForm(data) {
-    console.log(data);
     try {
       setIsLoading(true);
       const { name, email, password } = data;
+      if (data?.password !== data?.["confirm password"]) {
+        setIsLoading(false);
+        setFlash({
+          type: "error",
+          message: "passwords do not match",
+        });
+        return;
+      }
       const { data: user } = await signUpUser({
         name,
         email,
@@ -143,7 +150,8 @@ function SignUpPage({ setFlash, signIn, history }) {
                 },
                 pattern: {
                   value: RegExp(password),
-                  message: "password does not match",
+                  // value: match(),
+                  message: "passwords does not match",
                 },
               }),
             }}

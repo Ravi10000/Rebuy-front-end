@@ -1,44 +1,74 @@
-.input-container{
+.input-container {
     position: relative;
     margin-top: 35px;
-    .input{
-        width: 100%;
-        padding: 15px 20px;
-        font-size: 1.5rem;
-        background-color: #EDE1EF;
-        border: none;
-        border-radius: 10px;
-        color: var(--text-clr);
-        &:focus{
-            // outline: 2px solid #e7b9f0;
-            outline: 2px solid var(--primary-clr);
-        }
-        &:focus, &:valid{
-            &+label{
-                font-weight: 600;
-                transform: translate(-15px, -45px);
-                color: var(--primary-clr);
+
+    .input-with-toogle {
+        position: relative;
+        .input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            background-color: #EDE1EF;
+            border: none;
+            border-radius: 10px;
+            color: var(--text-clr);
+
+            &:focus {
+                // outline: 2px solid #e7b9f0;
+                outline: 2px solid var(--primary-clr);
+            }
+
+            &:focus,
+            &:valid {
+                &+label {
+                    font-weight: 600;
+                    transform: translate(-15px, -45px);
+                    color: var(--primary-clr);
+                }
             }
         }
+
+        .toogle-password {
+            position: absolute;
+            display: grid;
+            place-content: center;
+            top: 0;
+            right: 0;
+            padding-right: 20px;
+            font-weight: bold;
+            opacity: .5;
+            height: 100%;
+        }
+
+        label {
+            pointer-events: none;
+            position: absolute;
+            left: 20px;
+            top: 17.5px;
+            text-transform: capitalize;
+            font-weight: 500;
+            transition: all .2s ease-out;
+        }
     }
-    label{
-        pointer-events: none;
-        position: absolute;
-        left: 20px;
-        top: 17.5px;
-        text-transform: capitalize;
-        font-weight: 500;
-        transition: all .2s ease-out;
-    }
-    .error{
+
+    .error {
         margin-top: 5px;
         text-transform: lowercase;
         margin-left: 10px;
         // color: rgba(161, 43, 108, 0.664);   
         color: rgb(129, 126, 126);
         font-weight: 500;
-        &::first-letter{
+
+        &::first-letter {
             text-transform: uppercase;
         }
-       }
+    }
+}
+
+@media (hover: hover) {
+    .input-container {
+        .toogle-password:hover {
+            cursor: pointer;
+        }
+    }
 }

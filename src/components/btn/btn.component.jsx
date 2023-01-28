@@ -22,9 +22,6 @@ export default function Btn({
         ...custom_styles,
         display: __isloading ? "flex" : "inline-block",
       }}
-      // onClick={() => {
-      //   __handleClick && __handleClick();
-      // }}
       {...__otherProps}
     >
       {children}

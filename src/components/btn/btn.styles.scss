@@ -32,9 +32,6 @@ button.btn {
 @media (hover: hover) {
     button.btn {
         &:hover {
-            // background-color: var(--btn-text-clr);
-            // color: var(--primary-clr);
-            // border: 2px solid var(--primary-clr);
             cursor: pointer;
         }
     }
