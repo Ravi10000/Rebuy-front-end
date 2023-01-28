@@ -15,7 +15,7 @@ const UserReducer = (state = INITIAL_STATE, action) => {
     case USER_ACTION_TYPES.END_OF_FETCHING_USER:
       return { ...state, isFetchingUser: false };
     case USER_ACTION_TYPES.SIGN_OUT_USER:
-      return null;
+      return {...state, currentUser: null, isFetchingUser: false};
     default:
       return state;
   }

@@ -8,8 +8,9 @@ import { signOutUser } from "../../utils/api";
 import { signOut } from "../../redux/user/user.actions";
 import { useState } from "react";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
+import { withRouter } from "react-router-dom";
 
-function ProfilePage({ user, signOut }) {
+function ProfilePage({ user, signOut, history }) {
   const [isLoading, setIsLoading] = useState(null);
   async function handleSignOut() {
     setIsLoading(true);
@@ -20,6 +21,7 @@ function ProfilePage({ user, signOut }) {
         return;
       }
       signOut();
+      history.push("/signin");
     } catch (error) {
       console.log({ error });
     }
@@ -38,9 +40,13 @@ function ProfilePage({ user, signOut }) {
               <p className="email">{user?.username}</p>
               <p className="phone">{user?.["phone number"]}</p>
               <div className="sign-out">
-                <a className="__link" onClick={handleSignOut}>
-                  Sign out
-                </a>
+                {isLoading ? (
+                  <Spinner sm />
+                ) : (
+                  <a className="__link" onClick={handleSignOut}>
+                    Sign out
+                  </a>
+                )}
                 <div className="spinner"></div>
               </div>
             </div>
@@ -57,4 +63,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut()),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ProfilePage));
