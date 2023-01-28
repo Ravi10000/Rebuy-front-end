@@ -1,36 +1,3 @@
-// .popup {
-//   position: fixed;
-//   z-index: 11;
-//   top: 10%;
-//   right: 50%;
-//   transform: translate(50%);
-//   overflow: hidden;
-//   cursor: pointer;
-//   .popup-msg {
-//     background-color: var(--danger-bg);
-//     padding: 12px 25px;
-//     border-radius: 3px;
-//     color: var(--danger);
-//     max-width: 300px;
-//     font-weight: var(--medium);
-//     position: relative;
-//     right: -200%;
-//     animation: slideMobilePopup 1s ease-in-out forwards;
-//   }
-// }
-// .popup.success {
-//   .popup-msg {
-//     background-color: var(--success-bg);
-//     color: var(--success);
-//   }
-// }
-// .popup.info {
-//   .popup-msg {
-//     background-color: var(--info-bg);
-//     color: var(--info);
-//   }
-// }
-
 @keyframes slideMobilePopup {
   0% {}
 
@@ -54,16 +21,6 @@
   }
 }
 
-// @media (min-width: 800px) {
-//   .popup {
-//     .popup-msg {
-//       top: 20%;
-//       right: 20%;
-//       animation: slideDesktopPopup 1s ease-in-out forwards;
-//     }
-//   }
-// }
-
 .popup {
   position: fixed;
   bottom: 5%;
@@ -76,6 +33,7 @@
   z-index: 4000000;
   width: 100vw;
   color: #0AA06E;
+  transition: all .2s ease-in-out;
   animation: slideMobilePopup .3s ease-in-out forwards;
 
   img {

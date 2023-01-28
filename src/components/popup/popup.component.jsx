@@ -26,7 +26,7 @@ const PopUp = ({ message, type, clearFlash }) => {
     >
       {message && (
         <>
-          <img src={`${type}.png`} alt={type} />
+          <img src={`/${type}.png`} alt={type} />
           <p>{message}</p>
           <div className="count">{count}</div>
         </>

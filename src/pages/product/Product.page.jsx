@@ -15,10 +15,20 @@ import {
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
+import { setFlash } from "../../redux/flash/flash.actions";
+import { updateUser } from "../../redux/user/user.actions";
 
-function ProductPage({ match, history, currentUser, isFetchingUser }) {
+function ProductPage({
+  match,
+  history,
+  currentUser,
+  isFetchingUser,
+  setFlash,
+  updateUser,
+}) {
   const [product, setProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // console.log({ currentUser, isFetchingUser });
   const values = [
@@ -52,9 +62,32 @@ function ProductPage({ match, history, currentUser, isFetchingUser }) {
   }, [isFetchingUser, currentUser, product]);
 
   async function handleAddToCart() {
-    alert(product?._id);
-    const response = await addProductToCart({ productId: product?._id });
-    console.log(response.data);
+    try {
+      setIsLoading(true);
+      const { data: user } = await addProductToCart({
+        productId: product?._id,
+      });
+      setIsLoading(false);
+      if (user.error) {
+        setFlash({
+          type: "error",
+          message:
+            "something went wrong, please reload the page and try again!",
+        });
+        return;
+      }
+      setFlash({
+        type: "success",
+        message: "added to cart",
+      });
+      updateUser(user);
+    } catch (error) {
+      console.log({ error });
+      setFlash({
+        type: "error",
+        message: "something went wrong, please reload the page and try again!",
+      });
+    }
   }
 
   return (
@@ -90,14 +123,16 @@ function ProductPage({ match, history, currentUser, isFetchingUser }) {
               </div>
               <div className="price-container">
                 <div className="price">Rs.{product?.price} only</div>
-                {/* <div className="msg">only 3 left at this price</div> */}
               </div>
               <div className="buttons">
                 <Btn>Buy Now</Btn>
                 {showCart ? (
+                  !isLoading ?
                   <Btn __btn_secondary onClick={handleAddToCart}>
                     Add to cart
                   </Btn>
+                  :
+                  <Spinner sm/>
                 ) : currentUser ? (
                   <p>Added to cart</p>
                 ) : (
@@ -137,4 +172,11 @@ const mapStateToProps = createStructuredSelector({
   isFetchingUser: selectIsFetchingUser,
 });
 
-export default connect(mapStateToProps)(withRouter(ProductPage));
+const mapDispatchToProps = (dispatch) => ({
+  setFlash: (flash) => dispatch(setFlash(flash)),
+  updateUser: (user) => dispatch(updateUser(user)),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ProductPage));
