@@ -1,12 +1,10 @@
 @keyframes slideMobilePopup {
-  0% {}
-
-  70% {
+  0% {
     left: -20%;
   }
 
   100% {
-    left: 0%;
+    left: 5%;
   }
 }
 
@@ -24,21 +22,23 @@
 .popup {
   position: fixed;
   bottom: 5%;
-  background-color: var(--background-clr-v2);
+  background-color: white;
   padding: 20px 50px;
-  border-radius: 5px;
+  border-radius: 15px;
   font-family: 'Montserrat';
-  font-size: 1.5rem;
   font-weight: 600;
   z-index: 4000000;
-  width: 100vw;
+  max-width: 90vw;
   color: #0AA06E;
+  display: flex;
+  align-items: center;
   transition: all .2s ease-in-out;
   animation: slideMobilePopup .3s ease-in-out forwards;
 
   img {
-    width: 50px;
+    width: 30px;
     aspect-ratio: 1/1;
+    margin-right: 10px;
   }
 
   .count {

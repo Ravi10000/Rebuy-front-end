@@ -3,12 +3,17 @@
 }
 
 .empty-cart {
-    display: grid;
-    place-content: center;
-
+    // display: grid;
+    // place-items: center;
+    text-align: center;
+    img{
+        width: 100px;
+    }
     p {
+        font-size: 2rem;
         font-weight: bold;
         color: var(--text-clr);
+        opacity: .5;
     }
 }
 

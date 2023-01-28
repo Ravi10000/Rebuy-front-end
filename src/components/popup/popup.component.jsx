@@ -19,7 +19,10 @@ const PopUp = ({ message, type, clearFlash }) => {
   return (
     <div
       className={`popup ${type}`}
-      style={{ display: hidePopup && "none" }}
+      style={{
+        display: hidePopup && "none",
+        boxShadow: `0px 0px 1px var(--${type})`,
+      }}
       onClick={() => {
         togglePopup(false);
       }}

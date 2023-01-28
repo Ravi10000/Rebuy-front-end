@@ -15,6 +15,7 @@ const CartList = ({ list }) => {
         ""
       ) : (
         <div className="empty-cart">
+          <img src="/sorry.png" alt="empty-cart" />
           <p>nothing is in your cart</p>
         </div>
       )}

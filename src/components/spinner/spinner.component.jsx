@@ -1,8 +1,11 @@
 import "./spinner.styles.scss";
 
-export default function Spinner({ md, sm, page }) {
+export default function Spinner({ md, sm, page, spinnerColor }) {
+  const spinnerColorStyles = spinnerColor || "var(--primary-clr)";
   const spinnerStyles = {
     width: sm ? "25px" : md ? "35px" : "50px",
+    borderTopColor: spinnerColorStyles,
+    borderLeftColor: spinnerColorStyles,
   };
   return (
     <div

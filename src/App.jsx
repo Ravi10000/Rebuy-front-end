@@ -28,6 +28,7 @@ import SignUpPage from "./pages/sign-up/sign-up.component";
 import ProductPage from "./pages/product/Product.page";
 import ProfilePage from "./pages/profile/profile.page";
 import CartPage from "./pages/cart/cart.page";
+import CheckoutPage from "./pages/checkout/checkout.page";
 
 // components
 import PopUp from "./components/popup/popup.component";
@@ -92,6 +93,7 @@ function App({
         <ProtectAuth exact path="/signup" component={SignUpPage} />
         <Protect exact path="/profile" component={ProfilePage} />
         <Protect exact path="/cart" component={CartPage} />
+        <Protect exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/products/:id" component={ProductPage} />
         <Route path="/" component={HomePage} />
       </Switch>

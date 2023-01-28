@@ -1,4 +1,14 @@
-.cart-page{
-    min-height: 100vh;
+.cart-page {
+    // min-height: 100vh;
     display: grid;
+
+    .container {
+        .btn-container {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+        }
+
+    }
 }

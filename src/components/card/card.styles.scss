@@ -50,12 +50,22 @@
     }
 }
 
-.remove-btn {
-    text-align: center;
-    cursor: pointer;
-    padding: 20px 0;
-    font-weight: 600;
-    color: #FC476E;
+.remove-btn-container {
+    margin-top: 20px;
+
+    .btn {
+        text-align: center;
+        cursor: pointer;
+        // padding: 20px 0;
+        font-weight: 600;
+        color: #FC476E;
+
+        +.select {
+            margin-top: 20px;
+            color: var(--text-clr);
+            opacity: .75;
+        }
+    }
 }
 
 @media (hover:hover) {

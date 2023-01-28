@@ -1,25 +1,18 @@
-.spinner-container{
-    // height: 100%;
-    // width: 100%;
+.spinner-container {
     display: grid;
     place-content: center;
-    // justify-self: stretch;
-    // align-items: center;
-    // outline: 2px solid red;
-    // justify-content: center;
-    .spinner{
+
+    .spinner {
         width: 50px;
         aspect-ratio: 1/1;
-        border: 2px solid var(--primary-clr);
-        border-top-color: var(--secondary-clr);
-        border-left-color: var(--secondary-clr);
+        border: 2px solid white;
         border-radius: 100%;
         animation: spin .5s linear infinite;
     }
 }
 
 @keyframes spin {
-    to{
+    to {
         transform: rotate(360deg);
     }
 }

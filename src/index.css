@@ -6,7 +6,10 @@
   --fade-text-clr: #3f3d52ee;
   --background-clr-v1: #ede1ef;
   --background-clr-v2: #f6f1f8;
-  --red: #d33747;
+  --red: #FC476E;
+  --error: #FC476E;
+  --info: #FFC048;
+  --success: #0AA06E;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -48,6 +51,9 @@ a {
   color: var(--text-clr);
   font-weight: 600;
   margin-left: 10%;
+}
+.__heading.colored{
+  color: var(--primary-clr);
 }
 
 .__link {
