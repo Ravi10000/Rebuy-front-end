@@ -9,8 +9,9 @@ import { signOut } from "../../redux/user/user.actions";
 import { useState } from "react";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 import { withRouter } from "react-router-dom";
+import { setFlash } from "../../redux/flash/flash.actions";
 
-function ProfilePage({ user, signOut, history }) {
+function ProfilePage({ user, signOut, setFlash, history }) {
   const [isLoading, setIsLoading] = useState(null);
   async function handleSignOut() {
     setIsLoading(true);
@@ -20,6 +21,10 @@ function ProfilePage({ user, signOut, history }) {
       if (user.error) {
         return;
       }
+      setFlash({
+        type: 'success',
+        message: "signed out successfully!"
+      })
       signOut();
       history.push("/signin");
     } catch (error) {
@@ -62,6 +67,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut()),
+  setFlash: (flash) => dispatch(setFlash(flash)),
 });
 export default connect(
   mapStateToProps,

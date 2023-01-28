@@ -6,25 +6,30 @@ import { connect } from "react-redux";
 import { clearFlash } from "../../redux/flash/flash.actions";
 const PopUp = ({ message, type, clearFlash }) => {
   const [hidePopup, togglePopup] = useState(false);
-
+  const [count, setCount] = useState(5);
   useEffect(() => {
     setTimeout(function () {
       togglePopup(true);
       clearFlash();
     }, 5000);
+    setInterval(() => {
+      setCount((count) => count - 1);
+    }, 999);
   }, [clearFlash]);
   return (
     <div
       className={`popup ${type}`}
       style={{ display: hidePopup && "none" }}
       onClick={() => {
-        togglePopup(true);
+        togglePopup(false);
       }}
     >
       {message && (
-        <div className="popup-msg">
+        <>
+          <img src={`${type}.png`} alt={type} />
           <p>{message}</p>
-        </div>
+          <div className="count">{count}</div>
+        </>
       )}
     </div>
   );

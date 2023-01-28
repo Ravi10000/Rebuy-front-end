@@ -11,7 +11,7 @@ import { setFlash } from "../../redux/flash/flash.actions";
 import { signInUser } from "../../utils/api";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 
-function SignInPage({ history, signIn, flash }) {
+function SignInPage({ history, signIn, setFlash }) {
   const {
     register,
     handleSubmit,
@@ -23,17 +23,18 @@ function SignInPage({ history, signIn, flash }) {
     try {
       setIsLoading(true);
       const { email: username, password } = data;
-      const res = await signInUser({ username, password });
-      signIn(res.data.user);
-      flash({
+      const { data: user } = await signInUser({ username, password });
+      setIsLoading(false);
+      setFlash({
         type: "success",
         message: "You are signed in successfully",
       });
-      history.goBack();
+      signIn(user);
+      history.push("/profile");
     } catch (err) {
-      console.log(err.message);
       setIsLoading(false);
-      flash({
+      console.log(err.message);
+      setFlash({
         type: "error",
         message: "Invalid username or password",
       });
@@ -101,7 +102,7 @@ function SignInPage({ history, signIn, flash }) {
 function mapDispatchToProps(dispatch) {
   return {
     signIn: (user) => dispatch(signIn(user)),
-    flash: (flash) => dispatch(setFlash(flash)),
+    setFlash: (flash) => dispatch(setFlash(flash)),
   };
 }
 

@@ -64,11 +64,33 @@
 //   }
 // }
 
-.popup{
+.popup {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 20%;
+  background-color: var(--background-clr-v2);
+  padding: 20px 50px;
+  border-radius: 5px;
   font-size: 2rem;
-  color: var(--primary-clr);
   z-index: 4000000;
+  max-width: 400px;
+  color: #0AA06E;
+
+  img {
+    width: 50px;
+    aspect-ratio: 1/1;
+  }
+}
+
+.popup.error {
+  color: #FC476E;
+}
+
+.popup.warning {
+  color: #FFC048;
+}
+
+@media (min-width: 800px) {
+  .popup {
+    right: 5%;
+  }
 }

@@ -42,12 +42,9 @@ function App({
     (async () => {
       try {
         // fetch user
-        // const { data } = await axios.get("https://mrphonex-api.onrender.com/api/user");
         startFetchingUser();
         const { data: user } = await fetchUserFromServer();
         endOfFetchingUser();
-        console.log({ user });
-        // setFetchingUser(false);
         if (user.error) {
           console.log(user.error);
           setFlash({
@@ -78,7 +75,8 @@ function App({
 
   return (
     <div className="app">
-      {flash && <PopUp type={flash.type} message={flash.message} />}
+      {flash && <PopUp type={flash?.type} message={flash?.message} />}
+      {/* {<PopUp type={"success"} message={"this is test message"} />} */}
       <Header />
       <Switch>
         <ProtectAuth exact path="/signin" component={SignInPage} />
