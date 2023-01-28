@@ -148,6 +148,11 @@ function SignUpPage({ setFlash, signIn, history }) {
                   value: 16,
                   message: "length should be 8 to 16 characters",
                 },
+                // validate: (val) => {
+                //   if (password != val) {
+                //     return "Your passwords do no match";
+                //   }
+                // },
                 pattern: {
                   value: RegExp(password),
                   // value: match(),
