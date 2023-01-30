@@ -26,3 +26,12 @@ export const startFetchingUser = () => ({
 export const endOfFetchingUser = () => ({
   type: USER_ACTION_TYPES.END_OF_FETCHING_USER,
 });
+
+export const addProductToPurchaseList = (productId) => ({
+  type: USER_ACTION_TYPES.ADD_PRODUCT_TO_PURCHASE_LIST,
+  payload: productId,
+});
+export const removeProductFromPurchaseList = (productId) => ({
+  type: USER_ACTION_TYPES.REMOVE_PRODUCT_FROM_PURCHASE_LIST,
+  payload: productId,
+});

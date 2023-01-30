@@ -1,5 +1,5 @@
 // styles
-import Card from "../card/card.component";
+import CartItem from "../cart-item/cart-item.component";
 import "./cart-list.styles.scss";
 
 const CartList = ({ list }) => {
@@ -8,7 +8,10 @@ const CartList = ({ list }) => {
       <div className="cart-list">
         {list &&
           list?.map((product) => (
-            <Card key={product._id} product={product} enableRemove />
+            <CartItem
+              key={product._id}
+              product={product}
+            />
           ))}
       </div>
       {list?.length > 0 ? (

@@ -13,3 +13,5 @@ export const selectIsFetchingUser = createSelector(
 );
 
 export const selectCart = createSelector([selectUser], (user) => user.cart);
+
+export const selectPurchaseList = createSelector([selectUser], (user) => user.purchaseList);

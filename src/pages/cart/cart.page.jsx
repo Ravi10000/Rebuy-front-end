@@ -5,10 +5,14 @@ import CartList from "../../components/cart-list/cart-list.component";
 import Spinner from "../../components/spinner/spinner.component";
 import Btn from "../../components/btn/btn.component";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectPurchaseList } from "../../redux/user/user.selectors";
 
-export default function CartPage() {
+function CartPage({ purchaseList }) {
   const [cartList, setCartList] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  // const [purchaseList, setPurchaseList] = useState([]);
 
   useEffect(() => {
     (async function () {
@@ -23,10 +27,11 @@ export default function CartPage() {
       }
     })();
   }, []);
+
   return (
     <div className="cart-page">
       <h1 className="__heading">My Cart</h1>
-      {cartList?.length > 0 && (
+      {cartList && cartList?.length > 0 && (
         <h3 className="__heading colored">select items to buy</h3>
       )}
       {isFetching ? (
@@ -34,10 +39,10 @@ export default function CartPage() {
       ) : (
         <div className="container">
           <CartList list={cartList} />
-          {cartList?.length > 0 && (
+          {purchaseList.length > 0 && (
             <div className="btn-container">
               <Link to="/checkout">
-                <Btn>Go to checkout</Btn>
+                <Btn>Checkout</Btn>
               </Link>
             </div>
           )}
@@ -46,3 +51,8 @@ export default function CartPage() {
     </div>
   );
 }
+
+const mapStateToProps = createStructuredSelector({
+  purchaseList: selectPurchaseList,
+});
+export default connect(mapStateToProps)(CartPage);
