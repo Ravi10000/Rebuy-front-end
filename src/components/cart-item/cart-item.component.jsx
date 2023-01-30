@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import {
   addProductToPurchaseList,
   removeProductFromPurchaseList,
+  addProductToCart,
+  removeProductFromCart as removeProductFromCartInClient,
   updateUser,
 } from "../../redux/user/user.actions";
 
@@ -17,6 +19,8 @@ function CartItem({
   updateUser,
   addProductToPurchaseList,
   removeProductFromPurchaseList,
+  addProductToCart,
+  removeProductFromCartInClient,
   history,
 }) {
   const [isRemoving, setIsRemoving] = useState(false);
@@ -29,6 +33,7 @@ function CartItem({
         removeProductFromPurchaseList(id);
         setIsSelected(false);
       }
+      removeProductFromCartInClient(id);
       const { data: user } = await removeProductFromCart(id);
       console.log({ user });
       setIsRemoving(false);
@@ -37,7 +42,7 @@ function CartItem({
         return;
       }
       updateUser(user);
-      window.location.reload(false);
+      // window.location.reload(false);
     } catch (error) {
       setIsRemoving(false);
       console.log({ error });
@@ -93,6 +98,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addProductToPurchaseList(productId)),
   removeProductFromPurchaseList: (productId) =>
     dispatch(removeProductFromPurchaseList(productId)),
+  addProductToCart: (productId) => dispatch(addProductToCart(productId)),
+  removeProductFromCartInClient: (productId) =>
+    dispatch(removeProductFromCartInClient(productId)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(CartItem));

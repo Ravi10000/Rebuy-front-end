@@ -1,17 +1,31 @@
 import "./checkout.styles.scss";
 
-import React from "react";
+import {useEffect} from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectPurchaseList } from "../../redux/user/user.selectors";
+import CheckoutItem from "../../components/checkout-item/checkout-item";
+import { withRouter } from "react-router-dom";
 
-function CheckoutPage({ purchaseList }) {
+function CheckoutPage({ purchaseList, history }) {
   console.log({ purchaseList });
-  return <div>CheckoutPage</div>;
+
+  useEffect(() => {
+    if (!purchaseList.length) {
+      history.push("/");
+    }
+  }, []);
+  return (
+    <div className="checkout-page">
+      {purchaseList?.map((product) => (
+        <CheckoutItem product={product} key={product} />
+      ))}
+    </div>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
   purchaseList: selectPurchaseList,
 });
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default connect(mapStateToProps)(withRouter(CheckoutPage));

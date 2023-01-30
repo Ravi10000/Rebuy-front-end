@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectPurchaseList } from "../../redux/user/user.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-function CartPage({ purchaseList }) {
+function CartPage({ purchaseList, user }) {
   const [cartList, setCartList] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  // const [purchaseList, setPurchaseList] = useState([]);
 
   useEffect(() => {
     (async function () {
@@ -26,7 +26,7 @@ function CartPage({ purchaseList }) {
         console.log({ error });
       }
     })();
-  }, []);
+  }, [user]);
 
   return (
     <div className="cart-page">
@@ -54,5 +54,6 @@ function CartPage({ purchaseList }) {
 
 const mapStateToProps = createStructuredSelector({
   purchaseList: selectPurchaseList,
+  user: selectCurrentUser,
 });
 export default connect(mapStateToProps)(CartPage);

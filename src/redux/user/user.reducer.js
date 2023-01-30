@@ -8,11 +8,26 @@ const INITIAL_STATE = {
 const UserReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_ACTION_TYPES.ADD_PRODUCT_TO_PURCHASE_LIST:
-      return { ...state, purchaseList: [...state.purchaseList, action.payload] };
+      return {
+        ...state,
+        purchaseList: [...state.purchaseList, action.payload],
+      };
     case USER_ACTION_TYPES.REMOVE_PRODUCT_FROM_PURCHASE_LIST:
       return {
         ...state,
         purchaseList: state.purchaseList.filter(
+          (item) => item !== action.payload
+        ),
+      };
+    case USER_ACTION_TYPES.ADD_PRODUCT_TO_CART:
+      return {
+        ...state,
+        purchaseList: [...state.currentUser.cart, action.payload],
+      };
+    case USER_ACTION_TYPES.REMOVE_PRODUCT_FROM_CART:
+      return {
+        ...state,
+        purchaseList: state.currentUser.cart.filter(
           (item) => item !== action.payload
         ),
       };
