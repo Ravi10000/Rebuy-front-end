@@ -7,12 +7,19 @@ import Btn from "../../components/btn/btn.component";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectPurchaseList } from "../../redux/user/user.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import {
+  selectPurchaseList,
+  selectPurchaseListTotal,
+  selectCurrentUser,
+} from "../../redux/user/user.selectors";
 
-function CartPage({ purchaseList, user }) {
+function CartPage({ purchaseList, purchaseListTotal, user }) {
   const [cartList, setCartList] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const rupee = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+  });
 
   useEffect(() => {
     (async function () {
@@ -41,6 +48,9 @@ function CartPage({ purchaseList, user }) {
           <CartList list={cartList} />
           {purchaseList.length > 0 && (
             <div className="btn-container">
+              <div className="total">
+                Total = {rupee.format(purchaseListTotal)}
+              </div>
               <Link to="/checkout">
                 <Btn>Checkout</Btn>
               </Link>
@@ -55,5 +65,6 @@ function CartPage({ purchaseList, user }) {
 const mapStateToProps = createStructuredSelector({
   purchaseList: selectPurchaseList,
   user: selectCurrentUser,
+  purchaseListTotal: selectPurchaseListTotal,
 });
 export default connect(mapStateToProps)(CartPage);

@@ -21,6 +21,8 @@ function CheckoutPage({ purchaseList, history }) {
       {purchaseList?.map((product) => (
         <CheckoutItem product={product} key={product.id} />
       ))}
+      <div className="total">
+      </div>
     </div>
   );
 }

@@ -14,4 +14,14 @@ export const selectIsFetchingUser = createSelector(
 
 export const selectCart = createSelector([selectUser], (user) => user.cart);
 
-export const selectPurchaseList = createSelector([selectUser], (user) => user.purchaseList);
+export const selectPurchaseList = createSelector(
+  [selectUser],
+  (user) => user.purchaseList
+);
+
+export const selectPurchaseListTotal = createSelector([selectUser], (user) =>
+  user.purchaseList.reduce(
+    (accumalatedPrice, item) => accumalatedPrice + item.price,
+    0
+  )
+);

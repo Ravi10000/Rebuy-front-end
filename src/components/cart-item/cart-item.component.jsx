@@ -28,6 +28,10 @@ function CartItem({
 }) {
   const [isRemoving, setIsRemoving] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const rupee = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+  });
 
   useEffect(() => {
     purchaseList.forEach((item) => {
@@ -70,13 +74,13 @@ function CartItem({
   }
   return (
     <div>
-      <div className={`cart ${isSelected && 'selected'}`}>
+      <div className={`cart ${isSelected && "selected"}`}>
         <div className="container" onClick={handleSelect}>
           <img className="cart-img" src={images?.[0]?.url} alt="" />
           <h4 className="cart-name">{brand + " " + model}</h4>
           <p className="ram-storage">{ram + "GB /" + storage + "GB"}</p>
           <div className="price-container">
-            <p>Rs {price}</p>
+            <p>{rupee.format(price)}</p>
           </div>
         </div>
         {isRemoving ? (

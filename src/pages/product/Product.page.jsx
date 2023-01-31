@@ -29,7 +29,10 @@ function ProductPage({
   const [product, setProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const rupee = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+  });
   // console.log({ currentUser, isFetchingUser });
   const values = [
     product?.brand,
@@ -122,7 +125,7 @@ function ProductPage({
                 ></div>
               </div>
               <div className="price-container">
-                <div className="price">Rs.{product?.price} only</div>
+                <div className="price">{rupee.format(product?.price)} only</div>
               </div>
               <div className="buttons">
                 <Btn>Buy Now</Btn>
