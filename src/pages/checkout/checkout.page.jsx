@@ -10,11 +10,14 @@ import EmptyList from "../../components/empty-list/empty-list.component";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 import TotalPrice from "../../components/total-price/total-price.component";
 import Btn from "../../components/btn/btn.component";
+import { placeOrders } from "../../utils/api";
 
 function CheckoutPage({ purchaseList, history }) {
-  function handlePlaceOrder() {
-    const items = purchaseList.map(item => item.id)
-    console.log({items});
+  async function handlePlaceOrder() {
+    const listOfItems = purchaseList.map(item => item.id)
+    console.log({listOfItems});
+    const {data: orders} = await placeOrders(listOfItems);
+    console.log({orders});
   }
 
   return (

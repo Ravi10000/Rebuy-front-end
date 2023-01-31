@@ -59,4 +59,8 @@ export async function getCartItems() {
   return response;
 }
 
+export async function placeOrders(orders) {
+  const response = await axios.post("/orders/new", { orders });
+  return response;
+}
 export default axios;
