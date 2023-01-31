@@ -1,7 +1,7 @@
 import "./cart-item.styles.scss";
 // import Quality from "../quality/quality.component";
 import { Link, withRouter } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Spinner from "../spinner/spinner.component";
 import { removeProductFromCart } from "../../utils/api";
 import { connect } from "react-redux";
@@ -12,6 +12,8 @@ import {
   removeProductFromCart as removeProductFromCartInClient,
   updateUser,
 } from "../../redux/user/user.actions";
+import { createStructuredSelector } from "reselect";
+import { selectPurchaseList } from "../../redux/user/user.selectors";
 
 function CartItem({
   product: { _id: id, brand, model, price, ram, storage, images },
@@ -22,9 +24,16 @@ function CartItem({
   addProductToCart,
   removeProductFromCartInClient,
   history,
+  purchaseList,
 }) {
   const [isRemoving, setIsRemoving] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+
+  useEffect(() => {
+    purchaseList.forEach((item) => {
+      if (item.id === id) setIsSelected(true);
+    });
+  }, [purchaseList]);
 
   async function handleRemoveItem() {
     try {
@@ -57,12 +66,12 @@ function CartItem({
       return;
     }
     setIsSelected(true);
-    addProductToPurchaseList(id);
+    addProductToPurchaseList({ id, brand, model, price, ram, storage, images });
   }
   return (
     <div>
-      <div className="cart">
-        <div className="container">
+      <div className={`cart ${isSelected && 'selected'}`}>
+        <div className="container" onClick={handleSelect}>
           <img className="cart-img" src={images?.[0]?.url} alt="" />
           <h4 className="cart-name">{brand + " " + model}</h4>
           <p className="ram-storage">{ram + "GB /" + storage + "GB"}</p>
@@ -92,6 +101,10 @@ function CartItem({
     </div>
   );
 }
+
+const mapStateToProps = createStructuredSelector({
+  purchaseList: selectPurchaseList,
+});
 const mapDispatchToProps = (dispatch) => ({
   updateUser: (user) => dispatch(updateUser(user)),
   addProductToPurchaseList: (productId) =>
@@ -103,4 +116,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(removeProductFromCartInClient(productId)),
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(CartItem));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(CartItem));

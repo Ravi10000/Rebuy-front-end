@@ -1,10 +1,13 @@
 import "./checkout-item.styles.scss";
 import React from "react";
 
-function CheckoutItem({product}) {
-  return <div className="checkout-item">
-    <h1>{product}</h1>
-  </div>;
+function CheckoutItem({ product:{id,images, brand, model, ram, storage, price} }) {
+  return (
+    <div className="checkout-item">
+      <img src={images?.[0]?.url} alt="" />
+      <p>{brand + ' ' + model}</p>
+    </div>
+  );
 }
 
 export default CheckoutItem;

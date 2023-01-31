@@ -2,11 +2,14 @@
     margin: 50px 0;
 }
 
+
 .empty-cart {
     text-align: center;
-    img{
+
+    img {
         width: 100px;
     }
+
     p {
         font-size: 2rem;
         font-weight: bold;
@@ -20,6 +23,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         place-items: center;
+        row-gap: 20px;
     }
 
 }

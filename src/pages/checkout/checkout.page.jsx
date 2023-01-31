@@ -12,13 +12,14 @@ function CheckoutPage({ purchaseList, history }) {
 
   useEffect(() => {
     if (!purchaseList.length) {
-      history.push("/");
+      // history.push("/");
     }
   }, []);
   return (
     <div className="checkout-page">
+      <h1>Checkout</h1>
       {purchaseList?.map((product) => (
-        <CheckoutItem product={product} key={product} />
+        <CheckoutItem product={product} key={product.id} />
       ))}
     </div>
   );

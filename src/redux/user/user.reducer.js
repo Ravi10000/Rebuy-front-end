@@ -16,7 +16,7 @@ const UserReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         purchaseList: state.purchaseList.filter(
-          (item) => item !== action.payload
+          (item) => item.id !== action.payload
         ),
       };
     case USER_ACTION_TYPES.ADD_PRODUCT_TO_CART:

@@ -1,0 +1,12 @@
+.checkout-item {
+    display: flex;
+    border: 1px solid rgba(128, 128, 128, 0.432);
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 25px;
+
+    img {
+        width: 100px;
+    }
+
+}

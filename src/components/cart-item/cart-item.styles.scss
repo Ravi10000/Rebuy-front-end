@@ -6,7 +6,7 @@
     justify-content: center;
     text-transform: capitalize;
     border-radius: 10px;
-    transition: all .2s ease-in-out;
+    // transition: all .2s ease-in-out;
     position: relative;
     min-width: 300px;
 
@@ -26,7 +26,8 @@
             font-size: 1.2rem;
             color: var(--text-clr);
         }
-        p.ram-storage{
+
+        p.ram-storage {
             font-size: .8rem;
         }
 
@@ -41,6 +42,13 @@
         }
     }
 }
+
+.cart.selected {
+    border: 2px solid var(--primary-clr);
+    box-shadow: 2px 2px 20px var(--secondary-clr);
+    // transform: scale(1.05);
+}
+
 
 .actions-container {
     margin-top: 20px;
@@ -67,6 +75,15 @@
     .btn.product {
         color: var(--text-clr);
         // opacity: .75;
+    }
+}
+
+
+@media (hover: hover){
+    .cart{
+        .container{
+            cursor: pointer;
+        }
     }
 }
 
