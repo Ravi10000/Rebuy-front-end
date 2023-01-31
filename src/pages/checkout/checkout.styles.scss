@@ -1,3 +1,21 @@
-.checkout-page{
+.checkout-page {
+    margin-top: 50px;
     min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        align-self: flex-start;
+    }
+    .checkout-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin: 50px 0;
+    }
+    .price-btn-container{
+        text-align: center;
+        margin: 25px 0;
+    }
 }

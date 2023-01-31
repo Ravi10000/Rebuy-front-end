@@ -15,6 +15,7 @@ import {
   selectPurchaseListTotal,
   selectCurrentUser,
 } from "../../redux/user/user.selectors";
+import TotalPrice from "../../components/total-price/total-price.component";
 
 function CartPage({ purchaseList, purchaseListTotal, user }) {
   const [cartList, setCartList] = useState(null);
@@ -53,10 +54,7 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
           <CartList list={cartList} />
           {purchaseList.length > 0 && (
             <div className="btn-container">
-              <div className="total">
-                Total ={" "}
-                {purchaseListTotal ? rupee.format(purchaseListTotal) : 0}
-              </div>
+              <TotalPrice/>
               <Link to="/checkout">
                 <Btn>Checkout</Btn>
               </Link>
