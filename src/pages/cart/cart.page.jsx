@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
+import EmptyList from "../../components/empty-list/empty-list.component";
+
 import {
   selectPurchaseList,
   selectPurchaseListTotal,
@@ -43,14 +45,7 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
       {cartList && cartList?.length > 0 && (
         <h3 className="__heading colored">select items to buy</h3>
       )}
-      {cartList?.length > 0 && !isFetching ? (
-        ""
-      ) : (
-        <div className="empty-cart">
-          <img src="/sorry.png" alt="empty-cart" />
-          <p>nothing is in your cart</p>
-        </div>
-      )}
+      {cartList?.length > 0 && !isFetching ? "" : <EmptyList listName="cart" />}
       {isFetching ? (
         <Spinner page />
       ) : (
