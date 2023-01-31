@@ -22,14 +22,20 @@ const UserReducer = (state = INITIAL_STATE, action) => {
     case USER_ACTION_TYPES.ADD_PRODUCT_TO_CART:
       return {
         ...state,
-        purchaseList: [...state.currentUser.cart, action.payload],
+        currentUser: {
+          ...state.currentUser,
+          cart: [...state.currentUser.cart, action.payload],
+        },
       };
     case USER_ACTION_TYPES.REMOVE_PRODUCT_FROM_CART:
       return {
         ...state,
-        purchaseList: state.currentUser.cart.filter(
-          (item) => item !== action.payload
-        ),
+        currentUser: {
+          ...state.currentUser,
+          cart: state.currentUser.cart.filter(
+            (item) => item !== action.payload
+          ),
+        },
       };
     case USER_ACTION_TYPES.SET_CURRENT_USER:
     case USER_ACTION_TYPES.SIGN_IN_USER:

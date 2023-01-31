@@ -14,14 +14,14 @@ const CartList = ({ list }) => {
             />
           ))}
       </div>
-      {list?.length > 0 ? (
+      {/* {list?.length > 0 ? (
         ""
       ) : (
         <div className="empty-cart">
           <img src="/sorry.png" alt="empty-cart" />
           <p>nothing is in your cart</p>
         </div>
-      )}
+      )} */}
     </>
   );
 };

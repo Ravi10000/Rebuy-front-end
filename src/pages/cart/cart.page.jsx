@@ -7,6 +7,7 @@ import Btn from "../../components/btn/btn.component";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import ScrollToTop from "../../components/scroll-to-top/scroll-to-top.component";
 import {
   selectPurchaseList,
   selectPurchaseListTotal,
@@ -37,9 +38,18 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
 
   return (
     <div className="cart-page">
+      <ScrollToTop />
       <h1 className="__heading">My Cart</h1>
       {cartList && cartList?.length > 0 && (
         <h3 className="__heading colored">select items to buy</h3>
+      )}
+      {cartList?.length > 0 && !isFetching ? (
+        ""
+      ) : (
+        <div className="empty-cart">
+          <img src="/sorry.png" alt="empty-cart" />
+          <p>nothing is in your cart</p>
+        </div>
       )}
       {isFetching ? (
         <Spinner page />
@@ -49,7 +59,8 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
           {purchaseList.length > 0 && (
             <div className="btn-container">
               <div className="total">
-                Total = {rupee.format(purchaseListTotal)}
+                Total ={" "}
+                {purchaseListTotal ? rupee.format(purchaseListTotal) : 0}
               </div>
               <Link to="/checkout">
                 <Btn>Checkout</Btn>

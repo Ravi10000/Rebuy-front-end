@@ -1,6 +1,6 @@
 .cart-page {
     display: grid;
-
+    min-height: 80vh;
     h3 {
         margin-top: 10px;
         font-weight: 400;
@@ -40,6 +40,21 @@
         button {
             box-shadow: 2px 2px 10px var(--secondary-clr);
         }
+    }
+}
+
+.empty-cart {
+    text-align: center;
+
+    img {
+        width: 100px;
+    }
+
+    p {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--text-clr);
+        opacity: .5;
     }
 }
 
