@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     manifest: true,
     rollupOptions: {
-      input: "./src/main.jsx",
+      input: "./index.html",
     },
   },
   watch: {
@@ -16,8 +16,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
-        // target: "https://mrphonex-api.onrender.com",
+        // target: "http://localhost:5000",
+        target: "https://mrphonex-api.onrender.com",
         changeOrigin: true,
         secure: false,
       },

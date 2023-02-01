@@ -16,8 +16,8 @@ function CheckoutPage({ purchaseList, history }) {
   async function handlePlaceOrder() {
     const listOfItems = purchaseList.map(item => item.id)
     console.log({listOfItems});
-    const {data: orders} = await placeOrders(listOfItems);
-    console.log({orders});
+    const {data: user} = await placeOrders(listOfItems);
+    console.log({user});
   }
 
   return (

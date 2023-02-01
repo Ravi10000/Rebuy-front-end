@@ -46,7 +46,7 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
       {cartList && cartList?.length > 0 && (
         <h3 className="__heading colored">select items to buy</h3>
       )}
-      {cartList?.length > 0 && !isFetching ? "" : <EmptyList listName="cart" />}
+      {!cartList?.length && !isFetching && <EmptyList listName="cart" />}
       {isFetching ? (
         <Spinner page />
       ) : (
