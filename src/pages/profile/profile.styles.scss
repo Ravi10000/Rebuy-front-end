@@ -4,15 +4,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // font-size: 3rem;
+    font-size: 1.5rem;
 
     // justify-content: center;
     .container {
-        padding-top: 50px2;
+        padding-top: 50px;
+        // outline: 2px solid red;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 50px;
 
         img {
             width: 50%;
@@ -20,34 +23,79 @@
         }
 
         .info-container {
-            padding: 20px 50px;
-            border-radius: 15px;
+            padding: 50px 10px;
             background-color: rgba(255, 255, 255, 0.76);
             text-align: center;
-            margin-top: 50px;
+            // margin-top: 20px;
+            width: 100%;
+            // outline: 2px solid red;
             box-shadow: 02px 0px 10px var(--secondary-clr);
 
             .name {
-                font-size: 2rem;
+                font-size: 2.5rem;
                 font-weight: 600;
                 color: var(--text-clr);
             }
 
             p {
-                line-height: 200%;
-                font-size: 1.2rem;
+                line-height: 170%;
                 color: grey;
+            }
+
+            .actions {
+                display: flex;
+                flex-direction: column;
+                margin: 15px 0;
+                align-items: center;
+                div {
+                    width: max-content;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    border-radius: 5vmax;
+                    box-shadow: 1px 1px 5px var(--secondary-clr);
+                    img {
+                        width: 40px;
+                        aspect-ratio: 1/1;
+                    }
+                    p{
+                        color: var(--primary-clr);
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+            .sign-out-action{
+                display: grid;
+                place-items: center;
+                // text-align: center;
+                // outline: 2px solid red;
+                p{
+                    cursor: pointer;
+                    color: var(--error);
+                    font-weight: 600;
+                    width: fit-content;
+                }
             }
         }
     }
 }
 
-// @media (min-width: 800px) {
-//     .profile-page{
-//         .container{
-//             img{
-//                 ;
-//             }
-//         }
-//     }
-// }
+@media (min-width: 800px) {
+    .profile-page {
+        .container {
+            .info-container {
+                border-radius: 25px;
+                max-width: 600px;
+                .actions{
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+}

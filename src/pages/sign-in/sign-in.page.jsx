@@ -23,7 +23,7 @@ function SignInPage({ history, signIn, setFlash }) {
     try {
       setIsLoading(true);
       const { email: username, password } = data;
-      const { data: user } = await signInUser({ username, password });
+      const { data: user } = await signInUser({ username: username.toLowerCase(), password });
       setIsLoading(false);
       setFlash({
         type: "success",

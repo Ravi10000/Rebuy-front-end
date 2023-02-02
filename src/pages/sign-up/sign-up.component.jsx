@@ -35,8 +35,8 @@ function SignUpPage({ setFlash, signIn, history }) {
         return;
       }
       const { data: user } = await signUpUser({
-        name,
-        email,
+        name: name.toLowerCase(),
+        email: email.toLowerCase(),
         password,
         "phone number": data["phone number"],
       });
