@@ -30,6 +30,7 @@ import ProfilePage from "./pages/profile/profile.page";
 import CartPage from "./pages/cart/cart.page";
 import CheckoutPage from "./pages/checkout/checkout.page";
 import OrdersPage from "./pages/orders/orders.page";
+import SearchPage from "./pages/search/search.page";
 
 // components
 import PopUp from "./components/popup/popup.component";
@@ -96,6 +97,7 @@ function App({
         <Protect exact path="/cart" component={CartPage} />
         <Protect exact path="/checkout" component={CheckoutPage} />
         <Protect exact path="/orders" component={OrdersPage} />
+        <Route exact path="/search" component={SearchPage} />
         <Route exact path="/products/:id" component={ProductPage} />
         <Route path="/" component={HomePage} />
       </Switch>
