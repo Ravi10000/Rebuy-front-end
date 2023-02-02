@@ -1,4 +1,4 @@
-header{
+header {
     position: sticky;
     z-index: 99999;
     top: 0;
@@ -7,16 +7,18 @@ header{
     justify-content: space-between;
     padding: 10px 20px;
     background-color: var(--background-clr-v2);
-    .logo-container{
+
+    .logo-container {
         font-size: .75rem;
     }
-    .logged-in{
-        // outline: 2px solid red;
-        // width: 25%;
-        // max-width: 120px;    
+
+    .logged-in {
+        width: 25%;
+        max-width: 120px;
         display: flex;
         justify-content: space-between;
-        img{
+
+        img {
             height: 40px;
         }
     }

@@ -16,7 +16,6 @@ import {
 import Logo from "../logo/logo.component";
 import Btn from "../btn/btn.component";
 import Spinner from "../spinner/spinner.component";
-import SearchBar from "../search-bar/search-bar.component";
 
 function Header({ user, isFetchingUser }) {
   return (
@@ -30,14 +29,12 @@ function Header({ user, isFetchingUser }) {
         <Spinner sm />
       ) : !user ? (
         <div className="logged-out">
-          <SearchBar/>
           <Link to="/signin">
             <Btn>Log in</Btn>
           </Link>
         </div>
       ) : (
         <div className="logged-in">
-          <SearchBar/>
           <Link to="/cart">
             <img src="/cart.png" alt="" />
           </Link>

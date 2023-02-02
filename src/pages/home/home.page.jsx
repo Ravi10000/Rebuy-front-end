@@ -15,6 +15,8 @@ import {
 } from "../../redux/user/user.selectors";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import SearchBar from "../../components/search-bar/search-bar.component";
+
 
 function HomePage({ currentUser, isFetchingUser }) {
   return (
@@ -53,6 +55,8 @@ function HomePage({ currentUser, isFetchingUser }) {
           <div className="three"></div>
         </div> */}
       </div>
+      <SearchBar/>
+
       <div className="all-devices-container">
         <div className="for-sale-title __heading">
           <h2>For Sale</h2>
