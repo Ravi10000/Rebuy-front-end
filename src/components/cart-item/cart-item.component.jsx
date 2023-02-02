@@ -16,7 +16,7 @@ import { createStructuredSelector } from "reselect";
 import { selectPurchaseList } from "../../redux/user/user.selectors";
 
 function CartItem({
-  product: { _id: id, brand, model, price, ram, storage, images },
+  product,
   enableRemove,
   updateUser,
   addProductToPurchaseList,
@@ -27,6 +27,7 @@ function CartItem({
   purchaseList,
   setCartList,
 }) {
+  const { _id: id, brand, model, price, ram, storage, images } = product;
   const [isRemoving, setIsRemoving] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const rupee = new Intl.NumberFormat("en-IN", {
@@ -85,24 +86,25 @@ function CartItem({
             <p>{rupee.format(price)}</p>
           </div>
         </div>
-        {isRemoving ? (
-          <Spinner sm spinnerColor="var(--error)" />
-        ) : (
-          <div className="actions-container">
-            <Link to={`/products/${id}`}>
-              <div className="btn product">Go to product page</div>
-            </Link>
-            <div
-              className={`btn select ${isSelected && "selected"}`}
-              onClick={handleSelect}
-            >
-              {isSelected ? "selected" : "select"}
-            </div>
+
+        <div className="actions-container">
+          <Link to={`/products/${id}`}>
+            <div className="btn product">Go to product page</div>
+          </Link>
+          <div
+            className={`btn select ${isSelected && "selected"}`}
+            onClick={handleSelect}
+          >
+            {isSelected ? "selected" : "select"}
+          </div>
+          {isRemoving ? (
+            <Spinner sm spinnerColor="var(--error)" />
+          ) : (
             <div className="btn remove" onClick={handleRemoveItem}>
               remove
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

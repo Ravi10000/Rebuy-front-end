@@ -11,12 +11,16 @@ import { addProductToCart } from "../../utils/api";
 import {
   selectCurrentUser,
   selectIsFetchingUser,
+  selectPurchaseList,
 } from "../../redux/user/user.selectors";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { setFlash } from "../../redux/flash/flash.actions";
-import { updateUser } from "../../redux/user/user.actions";
+import {
+  updateUser,
+  addProductToPurchaseList,
+} from "../../redux/user/user.actions";
 
 function ProductPage({
   match,
@@ -25,6 +29,8 @@ function ProductPage({
   isFetchingUser,
   setFlash,
   updateUser,
+  addProductToPurchaseList,
+  purchaseList,
 }) {
   const [product, setProduct] = useState(null);
   const [showCart, setShowCart] = useState(false);
@@ -92,7 +98,23 @@ function ProductPage({
       });
     }
   }
-
+  function handleBuying() {
+    const selectedProducts = purchaseList.map((item) => item.id);
+    console.log(selectedProducts, !selectedProducts.includes(product._id));
+    if (!selectedProducts.includes(product._id)) {
+      let { _id: id, brand, model, price, ram, storage, images } = product;
+      addProductToPurchaseList({
+        id,
+        brand,
+        model,
+        price,
+        ram,
+        storage,
+        images,
+      });
+    }
+    history.push("/checkout");
+  }
   return (
     <div className="product-page">
       <ScrollToTop />
@@ -128,7 +150,7 @@ function ProductPage({
                 <div className="price">{rupee.format(product?.price)} only</div>
               </div>
               <div className="buttons">
-                <Btn>Buy Now</Btn>
+                <Btn onClick={handleBuying}>Buy Now</Btn>
                 {showCart ? (
                   !isLoading ? (
                     <Btn __btn_secondary onClick={handleAddToCart}>
@@ -174,11 +196,13 @@ function ProductPage({
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   isFetchingUser: selectIsFetchingUser,
+  purchaseList: selectPurchaseList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setFlash: (flash) => dispatch(setFlash(flash)),
   updateUser: (user) => dispatch(updateUser(user)),
+  addProductToPurchaseList: (id) => dispatch(addProductToPurchaseList(id)),
 });
 export default connect(
   mapStateToProps,
