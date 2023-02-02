@@ -25,6 +25,7 @@ function CartItem({
   removeProductFromCartInClient,
   history,
   purchaseList,
+  setCartList,
 }) {
   const [isRemoving, setIsRemoving] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
@@ -42,12 +43,13 @@ function CartItem({
   async function handleRemoveItem() {
     try {
       setIsRemoving(true);
+      const { data: user } = await removeProductFromCart(id);
       if (isSelected) {
         removeProductFromPurchaseList(id);
         setIsSelected(false);
       }
       removeProductFromCartInClient(id);
-      const { data: user } = await removeProductFromCart(id);
+      setCartList((list) => list.filter((item) => item._id !== id));
       console.log({ user });
       setIsRemoving(false);
       if (user.error) {

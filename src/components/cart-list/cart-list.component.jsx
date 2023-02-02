@@ -2,13 +2,14 @@
 import CartItem from "../cart-item/cart-item.component";
 import "./cart-list.styles.scss";
 
-const CartList = ({ list }) => {
+const CartList = ({ list, setCartList }) => {
   return (
     <>
       <div className="cart-list">
         {list &&
           list?.map((product) => (
             <CartItem
+              setCartList={setCartList}
               key={product._id}
               product={product}
             />

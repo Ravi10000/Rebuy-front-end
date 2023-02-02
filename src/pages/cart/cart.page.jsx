@@ -37,7 +37,7 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
         console.log({ error });
       }
     })();
-  }, [user]);
+  }, []);
 
   return (
     <div className="cart-page">
@@ -51,7 +51,7 @@ function CartPage({ purchaseList, purchaseListTotal, user }) {
         <Spinner page />
       ) : (
         <div className="container">
-          <CartList list={cartList} />
+          <CartList list={cartList} setCartList={setCartList}/>
           {purchaseList.length > 0 && (
             <div className="btn-container">
               <TotalPrice/>
