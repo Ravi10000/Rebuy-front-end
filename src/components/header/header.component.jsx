@@ -29,12 +29,18 @@ function Header({ user, isFetchingUser }) {
         <Spinner sm />
       ) : !user ? (
         <div className="logged-out">
+          <Link to="/search">
+            <img className="search-icon" src="/search-custom.png" alt="" />
+          </Link>
           <Link to="/signin">
             <Btn>Log in</Btn>
           </Link>
         </div>
       ) : (
         <div className="logged-in">
+          <Link to="/search">
+            <img className="search-icon" src="/search-custom.png" alt="" />
+          </Link>
           <Link to="/cart">
             <img src="/cart.png" alt="" />
           </Link>
