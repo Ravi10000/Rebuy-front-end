@@ -11,7 +11,17 @@ header {
     .logo-container {
         font-size: .75rem;
     }
-
+    .logged-out{
+        display: flex;
+        align-items: center;
+        button{
+            transform: scale(.75);
+        }
+        .search-icon {
+            height: 30px;
+            // margin-right: 20px;
+        }
+    }
     .logged-in {
         width: 35%;
         max-width: 160px;

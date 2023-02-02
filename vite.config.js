@@ -13,14 +13,14 @@ export default defineConfig({
   watch: {
     usePolling: true,
   },
-  server: {
-    proxy: {
-      "/api": {
-        // target: "http://localhost:5000",
-        target: "https://mrphonex-api.onrender.com",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       // target: "http://localhost:5000",
+  //       target: "https://mrphonex-api.onrender.com",
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 });

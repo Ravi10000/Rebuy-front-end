@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = `/api`;
+axios.defaults.baseURL = `https://mrphonex-api.onrender.com/api`;
 
 // /api/user
 export async function signUpUser(user) {
